@@ -3,9 +3,11 @@
   <p>You can view items from this theme to view on AR mode</p>
   <%= link_to 'home', root_path %>
 </div>
-<div class= 'container text-center'>
-<%= @themes.each do |theme| %>
-<img src= <%= asset_path "#{theme.name}.png" %> alt="" class="rounded mx-auto d-block" alt="..." width= 100>
-<p> <%= theme.name %> </p>
-<% end %>
+<div class= "container text-center">
+  <div class="row col-default-6">
+    <%= @themes.each do |theme| %>
+    <img src= <%= asset_path "#{theme.name}.png" %> alt="" class="rounded mx-auto d-block" alt="..." width= 100>
+    <p> <%= theme.name %> </p>
+    <% end %>
+  </div>
 </div>
