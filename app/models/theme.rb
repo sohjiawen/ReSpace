@@ -1,5 +1,5 @@
 class Theme < ApplicationRecord
-    THEMES = ['Minimalist','Beach', 'Eclectic', 'theme3', 'theme4', 'theme5', 'theme6']
+    THEMES = ['Minimalist','Beach', 'Eclectic', 'Comfy', 'Gamer', 'Nature']
 
     has_many :furnitures
 end
