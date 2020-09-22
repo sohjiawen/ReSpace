@@ -54,11 +54,11 @@ ids.each do |id|
         name: asset['displayName'],
         description: Faker::Marketing.buzzwords,
         price: Faker::Number.decimal(l_digits: 2), 
-        manufacturer_id: manufacturers.sample.id,
+        manufacturer: manufacturers.sample,
         rating: Faker::Number.between(from: 0, to: 5),
         dimension_height: Faker::Number.between(from: 600, to: 800),
         dimension_width: Faker::Number.between(from: 600, to: 800),
-        theme_id: themes.sample.id,
+        theme: themes.sample,
         preset: Faker::Boolean.boolean,
         thumbnail_url: asset['thumbnail']['url']
     )
