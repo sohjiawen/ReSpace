@@ -1,35 +1,11 @@
 <div class= 'container text-center'>
-  <h1>Pick a Theme</h1>
+  <h1> Pick a Theme </h1>
   <p>You can view items from this theme to view on AR mode</p>
-  <div>
-    <div>
-      <img src= <%= asset_path '<%= theme %>' %> class="rounded mx-auto d-block" width= 100 alt="...">
-      <p>Beach</p>
-    </div>
-    <div>
-      <img src= <%= asset_path 'comfy.png' %> class="rounded mx-auto d-block" width= 100 alt="...">
-      <p>Comfy</p>
-    </div>
-    <div>
-      <img src= <%= asset_path 'eclectic.png' %> class="rounded mx-auto d-block" width= 100 alt="...">
-      <p>Eclectic</p>
-    </div>
-    <div>
-      <img src= <%= asset_path 'gamer.png' %> class="rounded mx-auto d-block" width= 100 alt="...">
-      <p>Gamer</p>
-    </div>
-    <div>
-      <img src= <%= asset_path 'minimalist.png' %> class="rounded mx-auto d-block" width= 100 alt="...">
-      <p>Minimalist</p>
-    </div>
-    <div>
-      <img src= <%= asset_path 'nature.png' %> class="rounded mx-auto d-block" width= 100 alt="...">
-      <p>Nature</p>
-    </div>
-  </div>
   <%= link_to 'home', root_path %>
 </div>
-
-<%= themes.each do |theme|  %>
-  <%= image_tag "#{theme.name}.png" %>
+<div class= 'container text-center'>
+<%= @themes.each do |theme| %>
+<img src= <%= asset_path "#{theme.name}.png" %> alt="" class="rounded mx-auto d-block" alt="..." width= 100>
+<p> <%= theme.name %> </p>
 <% end %>
+</div>
