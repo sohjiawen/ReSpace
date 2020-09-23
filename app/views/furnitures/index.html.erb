@@ -1,13 +1,19 @@
 <div class= 'container text-center'>
   <H1 class="text-center"> Welcome to the marketplace</H1>
-</div>
-
-<div class="row">
-  <% @furnitures.each do |furniture| %>
-  <div class="bg-light col-6 col-lg-4 text-center pt-5">
-    <h5 class="card-title"><%= furniture.name %></h5>
-    <p class="text-muted"><%= furniture.price %></p>
+  <div class="row text-center">
+    <% @furnitures.each do |furniture| %>
+    <div class=“col-6 col-lg-4 text-center”>
+      <div class="card" style="width: 200px; height: 250px">
+        <img src= "<%= furniture.thumbnail_url %>" alt="thumbnail" style="width: 200px; height: 150px">
+        <div class="text-right">
+          <a href="#" class="btn btn-primary btn-plus">+</a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= furniture.name %></h5>
+          <p class="text-muted">$<%= furniture.price %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
   </div>
-  <% end %>
-  <%= link_to 'home', root_path %>
 </div>
