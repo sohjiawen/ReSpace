@@ -1,0 +1,10 @@
+<div class= 'container text-center'>
+  <H1 class="text-center"> Welcome to the marketplace</H1>
+</div>
+
+<div class="row">
+  <% @furnitures.each do |furniture| %>
+  <h5 class="card-title"><%= furniture.name %></h5>
+  <p class="text-muted"><%= furniture.price %></p>
+  <% end %>
+</div>
