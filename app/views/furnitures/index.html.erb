@@ -1,16 +1,5 @@
 <div class= 'container text-center'>
   <H1 class="text-center"> Welcome to the marketplace</H1>
-
-<<<<<<< HEAD
-<div class="row">
-  <% @furnitures.each do |furniture| %>
-  <div class="bg-light col-6 col-lg-4 text-center pt-5">
-    <h5 class="card-title"><%= furniture.name %></h5>
-    <p class="text-muted"><%= furniture.price %></p>
-  </div>
-  <% end %>
-  <%= link_to 'home', root_path %>
-=======
   <div class="row text-center">
     <% @furnitures.each do |furniture| %>
     <div class=“col-6 col-lg-4 text-center”>
@@ -27,5 +16,5 @@
     </div>
     <% end %>
   </div>
->>>>>>> 248c3ac777effc3057d17dd70c77774e6e84f137
+  <%= link_to 'home', root_path %>
 </div>
