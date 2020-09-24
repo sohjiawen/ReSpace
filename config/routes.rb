@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :themes, only: [:index, :create]
   resources :furnitures, only: [:index, :show]
   get '/myprofile', to: 'users#myprofile'
+  resources :user_themes, only: [:create]
 end
