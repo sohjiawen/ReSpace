@@ -1,4 +1,4 @@
 class UserTheme < ApplicationRecord
-  has_one :user
-  has_one :theme
+  belongs_to :user
+  belongs_to :theme
 end

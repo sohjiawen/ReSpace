@@ -3,9 +3,11 @@
       inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
     >
 	<a-assets>
-		<a-asset-item id="furniture"
-					  src="<%= @gltf_url %>"
-					  response-type="arraybuffer"></a-asset-item>
+		<% if @gltf_url %>
+			<a-asset-item id="furniture"
+						src="<%= @gltf_url %>"
+						response-type="arraybuffer"></a-asset-item>
+		<% end %>
 
 		<a-asset-item id="reticle"
 					  src="https://cdn.glitch.com/40eaf7e6-8a3f-4f52-bd80-495ff8db0e78%2Freticle.glb?v=1588522174535"
@@ -15,7 +17,7 @@
 	<a-camera position="0 1.2 0"></a-camera>
 
 	<!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
-	<a-entity environment="preset: forest; lighting: none; shadow: none; lightPosition: 0 2.15 0"
+	<a-entity environment="preset: tron; lighting: none; shadow: none; lightPosition: 0 2.15 0"
 			  hide-in-ar-mode></a-entity>
     
     <a-entity light="type: hemisphere; intensity: 1"></a-entity>
@@ -41,11 +43,12 @@
 
     <a-entity exit-ar-button="element: #exit-ar"></a-entity>
 
-    <a-entity id="poly_furniture" position="-1 0 -3" scale="0.2 0.2 0.2">
-        <a-entity position="0 2.15 0" rotation="0 55 0"
-                gltf-model="#furniture"
-                animation-mixer
-                shadow="cast: true; receive: false"></a-entity>
+	<a-entity id="poly_furniture" position="-1 0 -3" scale="0.8 0.8 0.8">
+		<a-entity
+			position="0 2.15 0"
+			gltf-model="#furniture"
+			animation-mixer
+			shadow="cast: true; receive: false"></a-entity>
 
     <!-- This shadow-receiving plane is only visible in AR mode.-->
     <a-plane height="30" width="30" rotation="-90 0 0"
@@ -56,31 +59,28 @@
 </a-scene>
 
 <div id="overlay">
-	<div class="collapse" id="collapseExample">
-		<div class="card card-body">
-			
-		</div>
-	</div>
-	<p>
-		<a class="btn btn-primary" id="ar-popup" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-			Furniture
-		</a>
-	</p>
 	<button id="exit-ar">Exit AR</button>
 </div>
 
-<div id="text">
+<div class="collapse" id="ar-collapse">
+		<div class="card card-body">
+			<% @furnitures.each do |furniture| %>
+			<div class="furniture-list-item mt-2">
+				<%= link_to ar_path(params: {poly_id: furniture.poly_id}) do %>
+					<%= image_tag(furniture.thumbnail_url, size: "100") %>
+					<%= furniture.name %>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+	</div>
 	<p>
-		Size:
-		<button id="btn_full">Full</button>
-		<button id="btn_half">1/2</button>
-		<button id="btn_quarter">1/16</button>
-	</p>
-
-	<p>
-		Try the WebXR's AR mode with an Android phone and Chrome (Beta) v81+.
+		<a class="btn btn-primary" id="ar-popup" data-toggle="collapse" href="#ar-collapse" role="button" aria-expanded="false" aria-controls="ar-collapse">
+			Furniture
+		</a>
 	</p>
 </div>
+
 <script>
 	function setSize(scale) {
 		document.getElementById('poly_furniture').setAttribute('scale', {x: scale, y: scale, z: scale});

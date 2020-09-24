@@ -175,30 +175,16 @@
           });
         }
       });
-
-      AFRAME.registerComponent("ar-popup", {
-        schema: {
-          // 	selector: Calls querySelector (e.g., "#box" to <a-entity id="box">)
-          element: { type: "selector" }
-        },
-        init: function() {
-          this.data.element.addEventListener("click", ev => {
-            const popup = document.getElementById("popup");
-            popup.classList.toggle("show");
-          });
-        }
-      });
     </script>
   </head>
 
   <body>
-    <div class="container col-6">
 
       <%= render 'shared/flashes' %>
 
       <%= yield %>
 
-      <%= render 'shared/navbar' %>
+      <%# <%= render 'shared/navbar' %> 
     </div>
   </body>
 </html>

@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   has_many :favourites, dependent: :destroy
   has_one :cart, dependent: :destroy
-  has_one :theme, through: :user_themes
+  has_many :user_themes
+  has_many :themes, through: :user_themes
 end
