@@ -1,10 +1,92 @@
-<div id="ar-start"></div>
-<div class="navigation">
-    <div class="navigation-icons d-flex justify-content-between">
-        <i class="fas fa-home"></i>
-        <i class="fas fa-paint-roller"></i>
-        <i class="fas fa-couch"></i>
-        <i class="fas fa-store-alt"></i>
-        <i class="fas fa-user-circle"></i>
-    </div>
+<a-scene
+      webxr="requiredFeatures: hit-test,local-floor; optionalFeatures: dom-overlay; overlayElement: #overlay"
+      inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
+    >
+	<a-assets>
+		<a-asset-item id="furniture"
+					  src="<%= @gltf_url %>"
+					  response-type="arraybuffer"></a-asset-item>
+
+		<a-asset-item id="reticle"
+					  src="https://cdn.glitch.com/40eaf7e6-8a3f-4f52-bd80-495ff8db0e78%2Freticle.glb?v=1588522174535"
+					  response-type="arraybuffer"></a-asset-item>
+	</a-assets>
+
+	<a-camera position="0 1.2 0"></a-camera>
+
+	<!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
+	<a-entity environment="preset: forest; lighting: none; shadow: none; lightPosition: 0 2.15 0"
+			  hide-in-ar-mode></a-entity>
+    
+    <a-entity light="type: hemisphere; intensity: 1"></a-entity>
+	<a-light type="directional"
+			 light="castShadow: true;
+                      shadowMapHeight: 1024;
+                      shadowMapWidth: 1024;
+                      shadowCameraLeft: -7;
+                      shadowCameraRight: 5;
+                      shadowCameraBottom: -5;
+                      shadowCameraTop: 5;"
+			 id="light"
+			 target="poly_furniture"
+			 position="-2 4 2">
+	</a-light>
+
+    <a-entity id="reticle"
+        gltf-model="#reticle"
+        scale="0.8 0.8 0.8"
+        ar-hit-test
+        position="0 0 -2"
+      ></a-entity>
+
+    <a-entity exit-ar-button="element: #exit-ar"></a-entity>
+
+    <a-entity id="poly_furniture" position="-1 0 -3" scale="0.2 0.2 0.2">
+        <a-entity position="0 2.15 0" rotation="0 55 0"
+                gltf-model="#furniture"
+                animation-mixer
+                shadow="cast: true; receive: false"></a-entity>
+
+    <!-- This shadow-receiving plane is only visible in AR mode.-->
+    <a-plane height="30" width="30" rotation="-90 0 0"
+                shadow="receive: true"
+                ar-shadows="opacity: 0.2"
+                visible="false"></a-plane> 
+    
+</a-scene>
+
+<div id="overlay">
+	<div class="collapse" id="collapseExample">
+		<div class="card card-body">
+			
+		</div>
+	</div>
+	<p>
+		<a class="btn btn-primary" id="ar-popup" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+			Furniture
+		</a>
+	</p>
+	<button id="exit-ar">Exit AR</button>
 </div>
+
+<div id="text">
+	<p>
+		Size:
+		<button id="btn_full">Full</button>
+		<button id="btn_half">1/2</button>
+		<button id="btn_quarter">1/16</button>
+	</p>
+
+	<p>
+		Try the WebXR's AR mode with an Android phone and Chrome (Beta) v81+.
+	</p>
+</div>
+<script>
+	function setSize(scale) {
+		document.getElementById('poly_furniture').setAttribute('scale', {x: scale, y: scale, z: scale});
+	}
+
+	document.getElementById('btn_full').onclick = setSize.bind(this, 1);
+	document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
+	document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.0625);
+</script>
