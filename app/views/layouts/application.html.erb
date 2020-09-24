@@ -192,9 +192,13 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+    <div class="container col-6">
 
-    <%= yield %>
+      <%= render 'shared/flashes' %>
+
+      <%= yield %>
+
+      <%= render 'shared/navbar' %>
+    </div>
   </body>
 </html>
