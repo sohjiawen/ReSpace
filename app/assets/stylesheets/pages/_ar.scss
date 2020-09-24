@@ -1,0 +1,50 @@
+.a-enter-ar-button, .a-enter-vr-button {
+  bottom: 60px !important;
+}
+
+div#text {
+	position: absolute;
+	left: 6px;
+	top: 6px;
+	padding: 6px;
+	/*
+	text-shadow: 0 0 5px white;
+	*/
+	max-width: 350px;
+	background-color: rgba(255, 255, 255, 0.7)
+}
+
+/* By default, hide the DOM Overlay element. */
+#overlay {
+    display: none;
+  }
+  /* Show the DOM Overlay element while active */
+  /* The overlay element has the :xr-overlay pseudoclass while active, 
+        and we use this in CSS rules to show/hide UI. */
+  #overlay:xr-overlay {
+    display: initial;
+  }
+  #greeting {
+    background-color: rgba(1, 1, 1, 0.25);
+    margin: 10px;
+  }
+  #exit-ar {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    background: rgba(127, 127, 127, 0.25);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 8px;
+    font-weight: bold;
+  }
+  #ar-popup {
+    position: absolute;
+    left: 10px;
+    bottom: 40px;
+    background: rgba(127, 127, 127, 0.25);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 6px 8px;
+    font-weight: bold;
+  }
