@@ -40,7 +40,9 @@ ids = [
     '8cnrwlAWqx7',
     'auSYhIqAZq0',
     '7AqWZQIaCQf',
-    '1YoE664mJTd']
+    '1YoE664mJTd',
+    '7FJFzi2gCfE',
+    'agRfCozhf5k']
 
 manufacturers = Manufacturer.all
 themes = Theme.all

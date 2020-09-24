@@ -5,11 +5,7 @@ class FurnituresController < ApplicationController
 
   def show
     # furnitures/4
-    params = {
-      id: 4
-    }
-    raise
-    @furnitures = Furniture.find(params[:id])
+    @furniture = Furniture.find(params[:id])
   end
 
 

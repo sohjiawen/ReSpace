@@ -1,0 +1,18 @@
+<div class="container">
+  <h1><%= link_to "<" , furnitures_path%></h1>
+  <div class="container mt-3">
+    <img src=" <%= @furniture.thumbnail_url %> " alt=" <%= @furniture.name %> " style="width: 300px; height: 225px">
+    <div class="mt-3">
+      <h1><%= @furniture.name %></h1>
+      <h3><strong>$<%= @furniture.price %></strong></h3>
+      <p>Theme: <%= @furniture.theme.name %> </p>
+      <p>Manufacturer: <%= @furniture.manufacturer.name %></p>
+      <p>Dimensions(W x D): <%= @furniture.dimension_width %>cm x <%= @furniture.dimension_height %>cm </p>
+      <p>Description: <%= @furniture.description %> </p>
+    </div>
+    <div>
+      <button type="button" class="btn btn-light mt-3">Buy Now</button>
+      <button type="button" class="btn btn-light mt-3">Add To Cart</button>
+    </div>
+  </div>
+</div>
