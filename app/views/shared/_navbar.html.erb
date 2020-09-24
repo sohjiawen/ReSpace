@@ -1,37 +1,27 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon justify-content-between">
-s
-  <div class="collapse navbar-collapse " id="navbarSupportedContent">
-    <div class="container d-flex justify-content-between">
-    <ul class="navbar-nav mr-auto">
-      <% if user_signed_in? %>
-          <li class="nav-item active">
-            <a href="/themes">
-              <i class="fas fa-home nav-link"></i>
-            </a>
-          </li class="nav-item">
-          <li>
-            <i class="fas fa-paint-roller nav-link"></i>
-          </li>
-          <li>
-            <i class="fas fa-chair nav-link"></i>
-          </li>
-          <li class="nav-item">
-            <a href="/furnitures">
-              <i class="fas fa-store-alt nav-link"></i>
-          </a>
-          </li>
-          <li class="nav-item">
-            <a href="/myprofile">
-              <i class="fas fa-user-circle nav-link"></i>
-            </a>
-          </li>
-      <% else %>
-      <% # raise %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
-      <% end %>
-    </ul>
-    </div>
+<div class="tab-nav-container">
+  <div class="tab active teal">
+    <a href="/themes">
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  <div class="tab teal">
+    <a href="/themes">
+      <i class="fas fa-paint-roller"></i>
+    </a>
+  </div>
+  <div class="tab teal">
+    <a href="/furnitures">
+    <i class="fas fa-chair"></i>
+  </a>
+  </div>
+  <div class="tab teal">
+    <a href="/furnitures">
+      <i class="fas fa-store-alt"></i>
+    </a>
+  </div>
+  <div class="tab teal">
+    <a href="/myprofile">
+      <i class="fas fa-user-circle"></i>
+    </a>
   </div>
 </div>
