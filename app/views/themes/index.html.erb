@@ -1,0 +1,17 @@
+<div class= 'container text-center'>
+  <h1> Pick a Theme </h1>
+  <p>You can view items from this theme to view on AR mode</p>
+
+    <div class="row">
+      <% @themes.each do |theme| %>
+      <div class="bg-light col-6 col-lg-4 text-center pt-5">
+        <img src= <%= asset_path "#{theme.name}.png" %> alt='theme_img' class="theme-img mx-auto d-block" alt="...">
+        <p> <%= theme.name %> </p>
+      </div>
+      <% end %>
+    </div>
+
+  <%= link_to 'home', root_path %>
+  <%= link_to 'furnitures', furnitures_path %>
+</div>
+

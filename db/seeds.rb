@@ -40,7 +40,9 @@ ids = [
     '8cnrwlAWqx7',
     'auSYhIqAZq0',
     '7AqWZQIaCQf',
-    '1YoE664mJTd']
+    '1YoE664mJTd',
+    '7FJFzi2gCfE',
+    'agRfCozhf5k']
 
 manufacturers = Manufacturer.all
 themes = Theme.all
@@ -53,13 +55,32 @@ ids.each do |id|
         poly_id: id,
         name: asset['displayName'],
         description: Faker::Marketing.buzzwords,
-        price: Faker::Number.decimal(l_digits: 2), 
+        price: Faker::Number.decimal(l_digits: 2),
         manufacturer: manufacturers.sample,
         rating: Faker::Number.between(from: 0, to: 5),
         dimension_height: Faker::Number.between(from: 600, to: 800),
         dimension_width: Faker::Number.between(from: 600, to: 800),
         theme: themes.sample,
         preset: Faker::Boolean.boolean,
+        thumbnail_url: asset['thumbnail']['url']
+    )
+    p "Furniture #{furniture.name} created"
+end
+
+preset_ids = ['7FJFzi2gCf','3qzceNuu8F2']
+
+preset_ids.each do |id|
+  furniture = Furniture.create!(
+        poly_id: id,
+        name: asset['displayName'],
+        description: Faker::Marketing.buzzwords,
+        price: Faker::Number.decimal(l_digits: 2),
+        manufacturer: manufacturers.sample,
+        rating: Faker::Number.between(from: 0, to: 5),
+        dimension_height: Faker::Number.between(from: 600, to: 800),
+        dimension_width: Faker::Number.between(from: 600, to: 800),
+        theme: Theme.find_by(name:'Eclectic'),
+        preset: true,
         thumbnail_url: asset['thumbnail']['url']
     )
     p "Furniture #{furniture.name} created"
