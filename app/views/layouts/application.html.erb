@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Respace</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Respace</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-    <script>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+  <script>
 		// WebXR requires HTTPS, so the site doesn't work if someone manually enters
 		// the URL and ends up using HTTP. To work around this, force redirect from
 		// http to https for non-localhost addresses.
 		if (window.location.protocol == "http:" &&
-				window.location.hostname != "localhost" &&
-				window.location.hostname != "127.0.0.1" &&
-				window.location.hostname != "[::1]") {
+      window.location.hostname != "localhost" &&
+      window.location.hostname != "127.0.0.1" &&
+      window.location.hostname != "[::1]") {
 			//window.location = window.location.href.replace('http:', 'https:');
-		}
-	</script>
+  }
+</script>
 
-	<!-- import the webpage's javascript files -->
-	<script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script>
-	<script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
-	<script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+<!-- import the webpage's javascript files -->
+<script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script>
+<script src="https://unpkg.com/aframe-extras@3.3.0/dist/aframe-extras.min.js"></script>
+<script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
 
-	<script>
+<script>
 		// Define a few custom components useful for AR mode. While these are somewhat reusable,
       // I recommend checking if there are officially supported alternatives before copying
       // these into new projects.
-      
+
       AFRAME.registerComponent("hide-in-ar-mode", {
         // Set this object invisible while in AR mode.
         init: function() {
@@ -116,10 +116,10 @@
             session.requestReferenceSpace("viewer").then(space => {
               this.viewerSpace = space;
               session
-                .requestHitTestSource({ space: this.viewerSpace })
-                .then(hitTestSource => {
-                  this.xrHitTestSource = hitTestSource;
-                });
+              .requestHitTestSource({ space: this.viewerSpace })
+              .then(hitTestSource => {
+                this.xrHitTestSource = hitTestSource;
+              });
             });
             // For image drawing, I use the local reference space, which gives me
             // stability in terms of the environment.
@@ -143,7 +143,7 @@
               // an array of HitTestResult instances.
               let hitTestResults = frame.getHitTestResults(
                 this.xrHitTestSource
-              );
+                );
 
               // The hit test may find multiple surfaces. The first one in the array is the one closest to the camera.
               if (hitTestResults.length > 0) {
@@ -164,8 +164,8 @@
         }
       });
 
-      AFRAME.registerComponent("exit-ar-button", {
-        schema: {
+AFRAME.registerComponent("exit-ar-button", {
+  schema: {
           // 	selector: Calls querySelector (e.g., "#box" to <a-entity id="box">)
           element: { type: "selector" }
         },
@@ -176,8 +176,8 @@
         }
       });
 
-      AFRAME.registerComponent("ar-popup", {
-        schema: {
+AFRAME.registerComponent("ar-popup", {
+  schema: {
           // 	selector: Calls querySelector (e.g., "#box" to <a-entity id="box">)
           element: { type: "selector" }
         },
@@ -197,8 +197,9 @@
       <%= render 'shared/flashes' %>
 
       <%= yield %>
-
+      <% if current_page?(ar_path) || current_page?(furnitures_path) %>
       <%= render 'shared/navbar' %>
+      <% end %>
     </div>
   </body>
-</html>
+  </html>
