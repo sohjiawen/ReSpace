@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/ar', to: 'sessions#show'
   resources :themes, only: [:index]
   resources :furnitures, only: [:index, :show]
+  get '/myprofile', to: 'users#myprofile'
 end
