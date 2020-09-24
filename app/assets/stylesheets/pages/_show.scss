@@ -1,0 +1,11 @@
+.show-img {
+  position: relative;
+}
+.show-img img {
+  display: block;
+}
+.show-img a {
+   position: absolute; top:0; left:0;
+   color: white;
+   font-size: 25px;
+}
