@@ -27,10 +27,13 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import { changeFurniture } from '../shared/change-furniture'
+import { init, animate } from '../plugins/initAR'
+import { themes } from '../plugins/initThemeImages'
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  changeFurniture();
+  init();
+  animate();
+  themes();
 });
