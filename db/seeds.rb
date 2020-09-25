@@ -10,6 +10,7 @@ require 'faker'
 require 'open-uri'
 
 # cleaning database
+UserTheme.destroy_all
 User.destroy_all
 Manufacturer.destroy_all
 Theme.destroy_all
@@ -30,7 +31,7 @@ p "Database has been cleaned"
 
 # seeding themes
 Theme::THEMES.each do |theme|
-  theme = Theme.create!(name: theme)
+  theme = Theme.create!(name: theme[:name], image_id: theme[:image_id])
   "#{theme.name} has been created"
 end
 
