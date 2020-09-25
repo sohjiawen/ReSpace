@@ -63,11 +63,11 @@
 </div>
 
 <div class="collapse" id="ar-collapse">
-		<div class="card card-body">
+		<div class="card card-body furniture-list">
 			<% @furnitures.each do |furniture| %>
 			<div class="furniture-list-item mt-2">
 				<%= link_to ar_path(params: {poly_id: furniture.poly_id}) do %>
-					<%= image_tag(furniture.thumbnail_url, size: "100") %>
+					<%= image_tag(furniture.thumbnail_url, size: "80") %>
 					<%= furniture.name %>
 				<% end %>
 			</div>
