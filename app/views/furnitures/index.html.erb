@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div>
   <div class="d-flex justify-content-center">
     <H1> Welcome to the marketplace</H1>
@@ -8,7 +9,7 @@
   <div class="row">
     <% @furnitures.each do |furniture| %>
     <div class=“col-6 col-lg-4 text-center”>
-      <div class="card" style="width: 200px; height: 250px">
+      <div class="card" style="width: 200px; height: 300px">
         <img src= "<%= furniture.thumbnail_url %>" alt="thumbnail" style="width: 190px; height: 140px">
         <div class="text-right">
           <a href="#" class="btn btn-primary btn-plus">+</a>
@@ -19,7 +20,7 @@
         </div>
       </div>
     </div>
-    <% end %>
   </div>
-  <%= link_to 'home', root_path %>
+  <% end %>
 </div>
+
