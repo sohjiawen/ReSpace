@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Respace
   class Application < Rails::Application
+    config.web_console.whitelisted_ips = '116.12.176.90'
+
     config.generators do |generate|
       generate.assets false
       generate.helper false
