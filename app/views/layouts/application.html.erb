@@ -184,8 +184,8 @@ AFRAME.registerComponent("exit-ar-button", {
 
       <%= yield %>
     </div>
-    <% if current_page?(ar_path) || current_page?(furnitures_path) %>
+    <%# <% if current_page?(ar_path) || current_page?(furnitures_path) %> 
     <%= render 'shared/navbar' %>
-    <% end %>
+    <%# <% end %> 
   </body>
   </html>
