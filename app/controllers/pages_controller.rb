@@ -7,16 +7,21 @@ class PagesController < ApplicationController
   end
 
   def ar
-    url = 'https://poly.googleapis.com/v1/assets/cLydFlVg-wI/?key=AIzaSyA6vXM5PuimkcY3LJ-GtJPX78aAeeWS6xM'
-    file = JSON.parse(open(url).read)
-    hash = file['formats'].find do |format|
-      format['formatType'] == "GLTF2"
+    poly_id = params[:poly_id] 
+    if poly_id 
+      url = "https://poly.googleapis.com/v1/assets/#{poly_id}/?key=#{ENV['POLY_API_KEY']}"
+      file = JSON.parse(open(url).read)
+      hash = file['formats'].find do |format|
+        format['formatType'] == "GLTF2"
+      end
+
+      @gltf_url = hash["root"]["url"]
     end
 
-    @gltf_url = hash["root"]["url"]
-
+    # need to change !!! later
     # @user = current_user 
-    # @themes = @user.themes
-    # @furnitures = @themes.where(preset: true)
+    @user = User.find(5)
+    @themes = @user.themes
+    @furnitures = @themes[0].furnitures.where(preset: true)
   end
 end

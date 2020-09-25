@@ -8,4 +8,5 @@ class Theme < ApplicationRecord
       {name: 'Nature', image_id: 'nature_algmhj'}]
 
     has_many :furnitures
+    has_many :users, through: :user_themes
 end
