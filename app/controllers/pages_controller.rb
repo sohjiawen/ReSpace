@@ -7,6 +7,9 @@ class PagesController < ApplicationController
   end
 
   def ar
+    # @user = current_user
+    # @themes = @user.themes
+    # @furnitures = @themes[0].furnitures.where(preset: true)
     poly_id = params[:poly_id] 
     if poly_id 
       url = "https://poly.googleapis.com/v1/assets/#{poly_id}/?key=#{ENV['POLY_API_KEY']}"
