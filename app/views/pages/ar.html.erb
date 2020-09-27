@@ -34,18 +34,19 @@
 			 position="-2 4 2">
 	</a-light>
 
-    <a-entity id="reticle"
-        gltf-model="#reticle"
-        scale="0.8 0.8 0.8"
-        ar-hit-test
-        position="0 0 -2"
-      ></a-entity>
-
     <a-entity exit-ar-button="element: #exit-ar"></a-entity>
 
-	<a-entity id="poly_furniture" position="-1 0 -3" scale="0.8 0.8 0.8">
-		<a-entity
-			position="0 2.15 0"
+	<a-entity id="model" position = "0 0 0">
+		<a-entity id="reticle"
+			gltf-model="#reticle"
+			scale="0.8 0.8 0.8"
+			ar-hit-test
+			position="0 0 -2"
+		>
+		<a-entity id="poly_furniture"
+			position="0.2 0.2 0"
+			rotation="0 180 0"
+			scale="0.8 0.8 0.8"
 			gltf-model="#furniture"
 			animation-mixer
 			shadow="cast: true; receive: false"></a-entity>
