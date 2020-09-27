@@ -5,3 +5,26 @@ btn-plus {
 .btn-pink {
   background-color: #E07F9E;
 }
+
+// themes buttons
+.btn-marketplace {
+    font-family: "Poppins",sans-serif;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 9px 25px;
+    text-decoration: none;
+    margin: 5px;
+    display: inline-block;
+    border-radius: 11px;
+    transition:opacity .3s;
+}
+
+.btn-marketplace-color {
+ color: #E07F9E;
+ border: 2px solid #E07F9E;
+ background: #FFFFFF;
+}
+
+.btn:hover{
+opacity:.9;
+}
