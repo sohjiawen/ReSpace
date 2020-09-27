@@ -1,9 +1,6 @@
-<h1>Welcome to ReSpace</h1>
-<div id="banner">
-<div class="bg-light col-6 col-lg-4 text-center pt-5">
-  <img src="../../logo-image/respace-logo.jpg"
-     alt="ReSpace-logo">
-<%= link_to 'themes', themes_path %>
-<%= link_to 'Login', new_user_session_path %>
-</div>
+<div class="bg-light col-6 col-lg-4">
+  <img src= <%= asset_path 'respace-logo.png' %> alt="ReSpace-logo" style="height: 300px  ">
+  <h1 class="white-text pb-3">Welcome to ReSpace</h1>
+    <a href=" /users/sign_in" class="btn btn-pink white-text mb-3">Log In</a>
+    <a href="/users/sign_up" class="btn btn-pink white-text">Sign Up</a>
 </div>
