@@ -40,11 +40,11 @@
         <%= link_to furniture_path(furniture) do %>
         <div class=“col-lg-4 text-right”>
           <div class="furniture-card" style="width: 140px; height: 230px">
-            <img src= "<%= furniture.thumbnail_url %>" alt="thumbnail" style="width: 136px; height: 136px">
+            <img src= "<%= furniture.thumbnail_url %>" alt="thumbnail" style="width: 120px; height: 120px" class="center">
             <div class="container">
               <div class="d-flex justify-content-between mt-2 text-blue">
                 <!-- furniture name and button to add to favorites -->
-                <h5 class="card-title text-truncate"><%= furniture.name %></h5>
+                <h5 class="card-title"><%= furniture.name.truncate(10) %></h5>
                 <a href="#"><i class="far fa-star text-blue"></i></a>
               </div>
               <p class="text-muted">$<%= furniture.price %></p>

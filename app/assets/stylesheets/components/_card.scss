@@ -9,7 +9,7 @@
 
 .furniture-card {
   margin: 15px;
-  border-radius: 5px;
+  border-radius: 16px;
   background: rgba(255, 251, 247, 0.9);
   border: 2px solid #E07F9E;
 }
@@ -20,4 +20,9 @@
 
 .card-title {
   display: block;
+}
+
+img.center {
+    display: block;
+    margin: 5px auto;
 }
