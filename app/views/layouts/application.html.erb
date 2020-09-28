@@ -31,6 +31,16 @@
       // I recommend checking if there are officially supported alternatives before copying
       // these into new projects.
 
+      AFRAME.registerComponent('auto-enter-ar', {
+          init: function () {
+            navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+              if (supported) {
+                console.log("session supported");
+              } 
+            });
+          }
+      });
+
       AFRAME.registerComponent("hide-in-ar-mode", {
         // Set this object invisible while in AR mode.
         init: function() {
@@ -74,12 +84,18 @@
         }
       });
 
-      AFRAME.registerComponent("ar-hit-test", {
+      AFRAME.registerSystem("ar-hit-test", {
+        schema: {
+          reticle: { type: "selector" }
+        },
+        
         init: function() {
-          // document.getElementById("reticle").setAttribute("visible", true);
           this.xrHitTestSource = null;
           this.viewerSpace = null;
           this.refSpace = null;
+          this.selectedFurniture = null;
+          this.selected = false;
+          this.el.sceneEl.enterAR();
 
           this.el.sceneEl.renderer.xr.addEventListener("sessionend", ev => {
             this.viewerSpace = null;
@@ -87,50 +103,48 @@
             this.xrHitTestSource = null;
           });
           this.el.sceneEl.renderer.xr.addEventListener("sessionstart", ev => {
+            console.log("session has started");
             let session = this.el.sceneEl.renderer.xr.getSession();
             // 'element' refers to the reticle
-            let element = this.el;
+            console.log(this.data.reticle.attributes);
+            let element = this.data.reticle
             // Using the 'select' event listener, when the user taps the screen,
             // the object will be placed in the camera view based on the pose of the reticle
-            session.addEventListener("select", function() {
-              // 'position' stores position of reticle
-              let position = element.getAttribute("position");
-              // Now, we set position of dino and light based on position of reticle
-              document.getElementById("poly_furniture").setAttribute("position", position);
-              document.getElementById("light").setAttribute("position", {
-                x: position.x - 2,
-                y: position.y + 4,
-                z: position.z + 2
-              });
+            session.addEventListener("select", () => {
+              console.log(element.getAttribute('position'));
+              if (!element || !this.selectedFurniture) return;
+                console.log("i am setting models in the screen");
+                this.selectedFurniture.setAttribute('position', element.getAttribute('position'));
+                console.log(element.getAttribute('position'));
+                console.log(this.selectedFurniture.getAttribute('position'));
+                this.selectedFurniture.setAttribute('visible', 'true');
             });
-            // Reference spaces express relationships between an origin and the world.
-            // In this sample, the viewer and the controller are the same device.
-            // What we draw it must be stable with regards to the environment,
-            // but the 'controller' I'm drawing with is moving.
-            // To solve this, requestReferenceSpace() is called twice - for viewer and for local space.
 
-            // For hit testing, I use the viewer reference space, which is based on
-            // the device's pose at the time of the hit test. After getting this,
-            // I call requestHitTestSource(), which creates the source of
-            // hit test data that I'll use when drawing.
             session.requestReferenceSpace("viewer").then(space => {
               this.viewerSpace = space;
-              session
+              session 
               .requestHitTestSource({ space: this.viewerSpace })
               .then(hitTestSource => {
                 this.xrHitTestSource = hitTestSource;
               });
             });
-            // For image drawing, I use the local reference space, which gives me
-            // stability in terms of the environment.
+
             session.requestReferenceSpace("local-floor").then(space => {
               this.refSpace = space;
             });
           });
         },
+
+        setSelectedFurniture: function(id) {
+          console.log("i'm in setSelectedFurniture");
+          this.selectedFurniture = this.el.sceneEl.querySelector(id);
+          this.selected = true;
+          console.log(this.selectedFurniture);
+        },
+
         tick: function() {
           if (this.el.sceneEl.is("ar-mode")) {
-            if (!this.viewerSpace) return;
+            if (!this.viewerSpace || !this.data.reticle) return;
 
             let frame = this.el.sceneEl.frame;
             let xrViewerPose = frame.getViewerPose(this.refSpace);
@@ -157,7 +171,7 @@
 
                 let position = new THREE.Vector3();
                 position.setFromMatrixPosition(inputMat);
-                this.el.setAttribute("position", position);
+                this.data.reticle.setAttribute("position", position);
               }
             }
           }
