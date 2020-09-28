@@ -11,8 +11,8 @@ tabs.forEach(clickedTab => {
 
         // Add the active class on the clicked tab
         clickedTab.classList.add('active');
-        const clickedTabBGColor = getComputedStyle(clickedTab).getPropertyValue('color');
-        console.log(clickedTabBGColor);
-        document.body.style.background = clickedTabBGColor;
+    const clickedTabBGColor = getComputedStyle(clickedTab).getPropertyValue('color');
+    console.log(clickedTabBGColor);
+    document.body.style.background = clickedTabBGColor;
     });
 });
