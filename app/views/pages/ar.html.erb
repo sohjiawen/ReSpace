@@ -1,93 +1,70 @@
 <a-scene
-      webxr="requiredFeatures: hit-test,local-floor; optionalFeatures: dom-overlay; overlayElement: #overlay"
-      inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js"
-    >
+      webxr="requiredFeatures: hit-test,local-floor; optionalFeatures: dom-overlay; overlayElement: #ar-overlay"
+	  ar-hit-test="reticle: #ar-reticle"
+	  inspector="http://localhost:3000/dist/aframe-inspector.js">
+
 	<a-assets>
-		<% if @gltf_url %>
-			<a-asset-item id="furniture"
-						src="<%= @gltf_url %>"
-						response-type="arraybuffer"></a-asset-item>
+		<% @furnitures.each_with_index do |furniture, index| %>
+			<% url = "https://poly.googleapis.com/v1/assets/#{furniture.poly_id}/?key=#{ENV['POLY_API_KEY']}" %>
+			<% file = JSON.parse(open(url).read) %>
+			<% hash = file['formats'].find do |format| %>
+				<% format['formatType'] == "GLTF2" || format['formatType'] == "GLTF" %>
+			<% end %>
+			<% gltf_url = hash["root"]["url"] %>
+			<% if gltf_url %>
+			<a-asset-item id="furniture-<%= index %>"
+						src="<%= gltf_url %>"
+						responseType="arraybuffer"></a-asset-item>
+			<% end %>
 		<% end %>
 
 		<a-asset-item id="reticle"
 					  src="https://cdn.glitch.com/40eaf7e6-8a3f-4f52-bd80-495ff8db0e78%2Freticle.glb?v=1588522174535"
-					  response-type="arraybuffer"></a-asset-item>
+					  responseType="arraybuffer"></a-asset-item>
 	</a-assets>
 
 	<a-camera position="0 1.2 0"></a-camera>
 
-	<!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
-	<a-entity environment="preset: tron; lighting: none; shadow: none; lightPosition: 0 2.15 0"
-			  hide-in-ar-mode></a-entity>
-    
-    <a-entity light="type: hemisphere; intensity: 1"></a-entity>
-	<a-light type="directional"
-			 light="castShadow: true;
-                      shadowMapHeight: 1024;
-                      shadowMapWidth: 1024;
-                      shadowCameraLeft: -7;
-                      shadowCameraRight: 5;
-                      shadowCameraBottom: -5;
-                      shadowCameraTop: 5;"
-			 id="light"
-			 target="poly_furniture"
-			 position="-2 4 2">
-	</a-light>
-
     <a-entity exit-ar-button="element: #exit-ar"></a-entity>
 
-	<a-entity id="model" position = "0 0 0">
-		<a-entity id="reticle"
+	<a-entity id="ar-reticle"
+			ar-hit-test
 			gltf-model="#reticle"
 			scale="0.8 0.8 0.8"
-			ar-hit-test
-			position="0 0 -2"
-		>
-		<a-entity id="poly_furniture"
-			position="0.2 0.2 0"
-			rotation="0 180 0"
-			scale="0.8 0.8 0.8"
-			gltf-model="#furniture"
-			animation-mixer
-			shadow="cast: true; receive: false"></a-entity>
+			position="0 0 -2"></a-entity>
 
-    <!-- This shadow-receiving plane is only visible in AR mode.-->
-    <a-plane height="30" width="30" rotation="-90 0 0"
-                shadow="receive: true"
-                ar-shadows="opacity: 0.2"
-                visible="false"></a-plane> 
-    
+	<% @furnitures.each_with_index do |furniture, index| %>
+		<a-entity id="poly_furniture-<%= index %>"
+			scale="0.2 0.2 0.2"
+			visible="false"
+			gltf-model="#furniture-<%= index %>"></a-entity>
+	<% end %>
 </a-scene>
 
-<div id="overlay">
-	<button id="exit-ar">Exit AR</button>
-</div>
-
-<div class="collapse" id="ar-collapse">
-		<div class="card card-body furniture-list">
-			<% @furnitures.each do |furniture| %>
-			<div class="furniture-list-item mt-2">
-				<%= link_to ar_path(params: {poly_id: furniture.poly_id}) do %>
-					<%= image_tag(furniture.thumbnail_url, size: "80") %>
-					<%= furniture.name %>
+<div id="ar-overlay" data-controller="ar-overlay">
+	<div class="collapse" id="ar-collapse">
+			<div class="card card-body furniture-list">
+				<% @furnitures.each_with_index do |furniture, index| %>
+					<div class="furniture-list-item mt-2" data-furniture-id="#poly_furniture-<%= index %>" data-action="click->ar-overlay#getIndex">
+						<%= image_tag(furniture.thumbnail_url, size: "80") %>
+						<%= furniture.name %>
+					</div>
 				<% end %>
 			</div>
-			<% end %>
-		</div>
 	</div>
 	<p>
 		<a class="btn btn-primary" id="ar-popup" data-toggle="collapse" href="#ar-collapse" role="button" aria-expanded="false" aria-controls="ar-collapse">
 			Furniture
 		</a>
 	</p>
+	<button id="exit-ar">Exit AR</button>
 </div>
 
 <script>
-	function setSize(scale) {
+	<%# function setSize(scale) {
 		document.getElementById('poly_furniture').setAttribute('scale', {x: scale, y: scale, z: scale});
 	}
-
 	document.getElementById('btn_full').onclick = setSize.bind(this, 1);
 	document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
-	document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.0625);
+	document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.0625); %>
 </script>
