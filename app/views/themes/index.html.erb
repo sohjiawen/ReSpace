@@ -1,23 +1,22 @@
-<div class= 'container text-center'>
+<div class= 'container text-center text-white mt-2'>
   <h1> Pick a Theme </h1>
-  <p>You can view items from this theme to view on AR mode</p>
-
-    <div class="row">
-      <%= simple_form_for @user_theme do |f| %>
-        <%= f.association :theme, as: :radio_buttons %>
-        <%= f.button :submit %>
-      <% end %>
-      <% @themes.each do |theme| %>
-        <%= link_to ar_path do %>
-          <div class="bg-light col-6 col-lg-4 text-center pt-5">
-            <%= cl_image_tag "#{theme.image_id}.png", class: "theme-img mx-auto d-block", data: {"checkbox-id" => "user_theme_theme_id_#{theme.id}"} %>
-            <p> <%= theme.name %> </p>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-  <%= link_to 'home', root_path %>
-  <%= link_to 'furnitures', furnitures_path %>
 </div>
 
+<div class="container">
+  <div class="row m-1 d-flex justify-content-center">
+    <!-- hidden form -->
+    <%= simple_form_for @user_theme do |f| %>
+      <%= f.association :theme, as: :radio_buttons %>
+      <%= f.button :submit %>
+    <% end %>
+    <!-- list out the themes -->
+    <% @themes.each do |theme| %>
+      <%= link_to ar_path do %>
+        <div class="bg-light col-lg-4 pt-3">
+          <%= cl_image_tag "#{theme.image_id}.png", class: "theme-img mx-auto d-block", data: {"checkbox-id" => "user_theme_theme_id_#{theme.id}"} %>
+          <p class="text-white text-center"> <%= theme.name %> </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
