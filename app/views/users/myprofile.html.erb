@@ -2,6 +2,17 @@
 
 <div>
   <h2>Favorited</h2>
+  <div>
+      <% @favourites.each do |fav| %>
+        <div class="card-product">
+          <img src= "<%= fav.furniture.thumbnail_url %>" alt="thumbnail" style="width: 136px; height: 136px">
+          <div class="card-product-infos">
+            <h2>Product name</h2>
+            <p>Product description with <strong>relevant info</strong> only.</p>
+          </div>
+        </div>
+      <% end %>
+  </div>
 </div>
 
 <%= link_to 'Log Out', destroy_user_session_path(current_user), method: :delete, class: "btn btn-light" %>
