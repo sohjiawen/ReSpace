@@ -31,16 +31,6 @@
       // I recommend checking if there are officially supported alternatives before copying
       // these into new projects.
 
-      AFRAME.registerComponent('auto-enter-ar', {
-          init: function () {
-            navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-              if (supported) {
-                console.log("session supported");
-              } 
-            });
-          }
-      });
-
       AFRAME.registerComponent("hide-in-ar-mode", {
         // Set this object invisible while in AR mode.
         init: function() {
