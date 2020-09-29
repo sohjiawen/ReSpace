@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :furnitures, only: [:index, :show]
   get '/myprofile', to: 'users#myprofile'
   resources :user_themes, only: [:create]
-  resources :cart_items, only: [:index, :create, :destroy]
+  resources :cart_items, only: [:destroy]
+  resources :carts, only: [:index, :update]
 end

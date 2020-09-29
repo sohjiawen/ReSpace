@@ -6,6 +6,7 @@ class FurnituresController < ApplicationController
   def show
     @furniture = Furniture.find(params[:id])
     # @cart_item = CartItem.new
+    @cart = current_user.cart
   end
 
 
