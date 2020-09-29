@@ -1,16 +1,13 @@
 // Specific CSS for your home-page
-.white-text {
-  color: #FFFFFF
+.landingimage {
+   position: relative;
+   width: 100%; /* for IE 6 */
 }
 
-.h4 {
-  padding-top: 10px;
-}
-
-.logo {
-  padding-left: 120px;
-}
-
-.container {
-  padding-left: 110px;
+h3 {
+   position: absolute;
+   top: 56px;
+   left: 105px;
+   width: 100%;
+   font-size: 31px;
 }
