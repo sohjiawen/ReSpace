@@ -3,18 +3,21 @@
 }
 
 .tab-nav-container {
-    position: sticky;
-    background-color: #fff;
+    position: fixed;
+    background-color: #f7f7f7;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     display: flex;
     justify-content: space-between;
-    padding: 30px;
+    align-items: center;
+    padding: 24px;
     width: 100vw;
     bottom: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .tab {
-    background-color: #ffffff;
+    background-color: #f7f7f7;
     border-radius: 50px;
     cursor: pointer;
     display: flex;
@@ -30,10 +33,15 @@
     color: rgba(28, 150, 162, 1);
 }
 
+.tab-nav-container p {
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
 @media (max-width: 632px) {
     .tab-nav-container {
-        padding: 13px;
-        width: 375px;
+        padding: 8px;
     }
 
     .tab {
