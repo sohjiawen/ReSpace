@@ -13,10 +13,4 @@
     <p>Dimensions(W x D): <%= @furniture.dimension_width %>cm x <%= @furniture.dimension_height %>cm </p>
     <p>Description: <%= @furniture.description %> </p>
   </div>
-  <div>
-    <!-- <button type="button" class="btn btn-light mt-3"><%= link_to #'Add To Cart', cart_items_path %> </button> -->
-    <%= simple_form_for [@furniture, @cart_item] do |f| %>
-      <%= f.button :submit, 'Add To Cart', class: 'btn btn-light' %>
-    <% end %>
-  </div>
 </div>
