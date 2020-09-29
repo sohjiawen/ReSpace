@@ -8,8 +8,14 @@ class PagesController < ApplicationController
 
   def ar
     @user = current_user
+    @furnitures = []
     @themes = @user.themes
-    @furnitures = @themes[0].furnitures.where(preset: true)
+    @themes[0].furnitures.where(preset: true).each do |furniture|
+      @furnitures << furniture if furniture
+    end
+    @user.furnitures.each do |furniture| 
+      @furnitures << furniture if furniture
+    end
     poly_id = params[:poly_id] 
     if poly_id 
       url = "https://poly.googleapis.com/v1/assets/#{poly_id}/?key=#{ENV['POLY_API_KEY']}"
@@ -19,11 +25,5 @@ class PagesController < ApplicationController
       end
       @gltf_url = hash["root"]["url"]
     end
-
-    # need to change !!! later
-    # @user = current_user 
-    # @user = User.find(5)
-    # @themes = @user.themes
-    # @furnitures = @themes[0].furnitures.where(preset: true)
   end
 end

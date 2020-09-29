@@ -7,11 +7,11 @@
   </div>
   <div class="row">
     <% @furnitures.each do |furniture| %>
-    <div class=“col-6 col-lg-4 text-center”>
+    <div id="furniture-<%= furniture.id %>" class=“col-6 col-lg-4 text-center”>
       <div class="card" style="width: 200px; height: 300px">
         <img src= "<%= furniture.thumbnail_url %>" alt="thumbnail" style="width: 190px; height: 140px">
         <div class="text-right">
-          <a href="#" class="btn btn-primary btn-plus">+</a>
+          <%= link_to '+', marketplace_ar_items_path(furniture_id: furniture.id), method: 'post', remote: true, class: "btn btn-primary" %>
         </div>
         <div class="card-body">
           <h5 class="card-title"><%=link_to furniture.name, furniture_path(furniture) %></h5>
