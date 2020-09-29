@@ -11,10 +11,7 @@ class ApplicationController < ActionController::Base
     # devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
 
-  # private
-
-  # def current_user
-  #   @_current_user ||= session[:current_user_id] &&
-  #     User.find_by(id: session[:current_user_id])
-  # end
+  def after_sign_in_path_for(resource)
+    themes_path
+  end
 end
