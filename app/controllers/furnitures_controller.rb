@@ -4,8 +4,8 @@ class FurnituresController < ApplicationController
   end
 
   def show
-    # furnitures/4
     @furniture = Furniture.find(params[:id])
+    @cart_item = CartItem.new
   end
 
 
