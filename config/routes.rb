@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :furnitures, only: [:index, :show]
   get '/myprofile', to: 'users#myprofile'
   resources :user_themes, only: [:create]
+
+  resources :marketplace_ar_items, only: [:create]
 end

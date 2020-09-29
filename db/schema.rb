@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_033449) do
+ActiveRecord::Schema.define(version: 2020_09_29_015338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 2020_09_25_033449) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "marketplace_ar_items", force: :cascade do |t|
+    t.bigint "furniture_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["furniture_id"], name: "index_marketplace_ar_items_on_furniture_id"
+    t.index ["user_id"], name: "index_marketplace_ar_items_on_user_id"
+  end
+
   create_table "themes", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -111,6 +120,8 @@ ActiveRecord::Schema.define(version: 2020_09_25_033449) do
   add_foreign_key "furniture_lists", "furnitures"
   add_foreign_key "furnitures", "manufacturers"
   add_foreign_key "furnitures", "themes"
+  add_foreign_key "marketplace_ar_items", "furnitures"
+  add_foreign_key "marketplace_ar_items", "users"
   add_foreign_key "user_themes", "themes"
   add_foreign_key "user_themes", "users"
 end
