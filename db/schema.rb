@@ -10,25 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_033449) do
+ActiveRecord::Schema.define(version: 2020_09_29_015647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cart_items", force: :cascade do |t|
-    t.bigint "cart_id", null: false
     t.bigint "furniture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.bigint "user_id"
     t.index ["furniture_id"], name: "index_cart_items_on_furniture_id"
-  end
-
-  create_table "carts", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_carts_on_user_id"
+    t.index ["user_id"], name: "index_cart_items_on_user_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -103,9 +96,8 @@ ActiveRecord::Schema.define(version: 2020_09_25_033449) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "furnitures"
-  add_foreign_key "carts", "users"
+  add_foreign_key "cart_items", "users"
   add_foreign_key "favourites", "furnitures"
   add_foreign_key "favourites", "users"
   add_foreign_key "furniture_lists", "furnitures"
