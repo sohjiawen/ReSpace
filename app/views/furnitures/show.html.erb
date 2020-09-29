@@ -13,8 +13,11 @@
     <p>Dimensions(W x D): <%= @furniture.dimension_width %>cm x <%= @furniture.dimension_height %>cm </p>
     <p>Description: <%= @furniture.description %> </p>
   </div>
+
   <div>
-    <button type="button" class="btn btn-light mt-3">Buy Now</button>
-    <button type="button" class="btn btn-light mt-3">Add To Cart</button>
+    <%= form_with(url: cart_path(@cart), model: @cart, local:true) do %>
+      <%= hidden_field_tag :furniture_id, @furniture.id %>
+      <%= submit_tag("Add To Cart") %>
+    <% end %>
   </div>
 </div>

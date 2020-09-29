@@ -1,0 +1,24 @@
+<div class="container">
+  <div>
+    <h1 class="fas fa-shopping-cart"></h1>
+  </div>
+
+  <div>
+    <% @cart_items.each do |item| %>
+      <div class="card-product mb-3 mt-2 text-dark">
+        <img src= "<%= item.furniture.thumbnail_url %>">
+        <div class="card-product-infos">
+          <h2><%= item.furniture.name %></h2>
+          <p><%= item.furniture.description %></p>
+          <p>$<%= item.furniture.price %></p>
+          <%= link_to furniture_path(item.furniture) do %>
+            <i class="fas fa-info-circle"></i>
+          <% end %>
+          <%= link_to cart_item_path(item), method: :delete, data: { confirm: "Remove item from cart?" } do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
