@@ -9,6 +9,6 @@ class CartsController < ApplicationController
   end
 
   def index
-
+    @cart_items = CartItem.where(cart: current_user.cart)
   end
 end
