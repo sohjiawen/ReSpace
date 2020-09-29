@@ -11,17 +11,13 @@ class ApplicationController < ActionController::Base
     # devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
 
-  # private
+  protected
 
   def after_sign_in_path_for(resource)
     themes_path
   end
 
-  def after_sign_out_path_for(resource_or_scope)
-    root_path
-  end
-
-  def sign_out_and_redirect(resource_or_scope)
+  def after_sign_out_path_for(scope)
     root_path
   end
 end
