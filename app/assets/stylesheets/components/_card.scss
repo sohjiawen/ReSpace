@@ -1,18 +1,28 @@
 .theme-img {
   border-radius: 20px;
-  width: 180px;
+  width: 130px;
   border: 5px solid white
 }
 .bg-light {
   background-color: #09122F !important;;
 }
 
-// .card {
-//   margin: 20px;
-//   border-radius: 5px;
-//   background: rgba(255, 251, 247, 0.9);
-//   border: 5px solid #E07F9E;
-// }
-// .card-body {
-//   padding: 0px;
-// }
+.furniture-card {
+  margin: 15px;
+  border-radius: 16px;
+  background: rgba(255, 251, 247, 0.9);
+  border: 2px solid #E07F9E;
+}
+
+.card-body {
+  padding: 0px;
+}
+
+.card-title {
+  display: block;
+}
+
+img.center {
+    display: block;
+    margin: 5px auto;
+}
