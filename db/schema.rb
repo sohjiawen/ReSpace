@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 2020_09_29_033512) do
   enable_extension "plpgsql"
 
   create_table "cart_items", force: :cascade do |t|
+    t.bigint "cart_id", null: false
     t.bigint "furniture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "cart_id"
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["furniture_id"], name: "index_cart_items_on_furniture_id"
   end
