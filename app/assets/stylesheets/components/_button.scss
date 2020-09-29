@@ -4,6 +4,8 @@ btn-plus {
 
 .btn-pink {
   background-color: #E07F9E;
+  color: white;
+  border-radius: 11px;
 }
 
 // themes buttons
@@ -27,4 +29,17 @@ btn-plus {
 
 .btn:hover{
 opacity:.9;
+}
+
+.btn-homepage {
+  position: absolute;
+  color: white;
+  background: #E07F9E;
+  padding: 6px 40px;
+  border-radius: 11px;
+  transition: background 0.3s ease ;
+  top: 150px;
+  left: 141px;
+  font-size: 12px;
+  text-align: center;
 }
