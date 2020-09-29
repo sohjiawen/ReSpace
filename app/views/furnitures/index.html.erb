@@ -7,7 +7,16 @@
         </a>
       </div>
       <div class="col-5">
-        <input type="text" class="form-control" placeholder="search for an item" style="border-radius: 10px">
+        <%= form_tag furnitures_path, method: :get do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Search"
+          %>
+          <%= button_tag(class: 'search-button') do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        <% end %>
       </div>
       <div class="col-2">
         <a href="/myprofile">
@@ -26,13 +35,21 @@
   </div>
   <div class="container">
     <div class="slider mt-2">
-      <a class="btn-marketplace btn-marketplace-color" href="#">Minimalist</a>
-      <a class="btn-marketplace btn-marketplace-color" href="#">Beach</a>
-      <a class="btn-marketplace btn-marketplace-color" href="#">Comfy</a>
-      <a class="btn-marketplace btn-marketplace-color" href="#">Gamer</a>
-      <a class="btn-marketplace btn-marketplace-color" href="#">Nature</a>
-      <a class="btn-marketplace btn-marketplace-color" href="#">Eclectic</a>
+      <%= link_to 'All', furnitures_path, class: 'btn-marketplace btn-marketplace-color' %>
+      <% Theme::THEMES.each do |theme| %>
+        <%= link_to theme[:name], furnitures_path(theme_name: theme[:name]), class: 'btn-marketplace btn-marketplace-color' %>
+      <% end %>
     </div>
+  </div>
+  
+  <!-- Sorting -->
+  <div class='container d-flex justify-content-end'>
+    <select name="sorting" id="sorting-options">
+      <option value="" disabled selected>Sort by</option>
+      <option value="date-asc">Most Recent</option>
+      <option value="price-asc">Price (Low to High)</option>
+      <option value="price-desc">Price (High to Low)</option>
+    </select>
   </div>
 
   <div class="container">
