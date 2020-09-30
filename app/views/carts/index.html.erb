@@ -1,9 +1,10 @@
 <div class="container mt-4">
-  <div style="width:56%;">
-    <%= link_to furnitures_path, class: "d-flex justify-content-between align-items-center text-white" do %>
-      <i class="fas fa-long-arrow-alt-left"></i>
-      <p class="my-0" style="font-size:16px">CART</p>
+
+  <div style="width:56%;" class="d-flex justify-content-between align-items-center text-white">
+    <%= link_to furnitures_path do %>
+      <i class="fas fa-long-arrow-alt-left text-white"></i>
     <% end %>
+      <p class="my-0 text-white" style="font-size:18px">Cart</p>
   </div>
 
   <div class="mt-4">
@@ -15,8 +16,8 @@
           <p class="mt-1">Made by <%= item.furniture.manufacturer.name %></p>
           <p class="mt-1">$<%= item.furniture.price %></p>
           <%= link_to cart_item_path(item), method: :delete, data: { confirm: "Remove item from cart?" } do %>
-            <i class="fas fa-trash-alt mt-2"></i>
-            <p class="d-inline">REMOVE</p>
+            <i class="fas fa-trash-alt mt-2 text-grey"></i>
+            <p class="d-inline text-grey">REMOVE</p>
           <% end %>
         </div>
       </div>
@@ -24,13 +25,13 @@
   </div>
 
   <div>
-    <h3>Total: $<%= @total %> </h3>
+    <h4>Total: $<%= @total %> </h4>
   </div>
 
   <div>
     <%= form_with(url: orders_path, local:true) do %>
       <%= hidden_field_tag :total, @total %>
-      <%= submit_tag("Checkout") %>
+      <%= submit_tag("Checkout", class:"btn btn-pink-lg") %>
     <% end %>
   </div>
 
