@@ -1,7 +1,7 @@
 <div class="container">
   <!-- Top navigation bar -->
   <div class="marketplace-nav mt-3">
-    <div class="row d-flex justify-content-around align-items-center">
+    <div class="d-flex justify-content-around align-items-center">
       <div class="search d-flex">
         <div class="search-bar">
           <%= form_tag furnitures_path, method: :get do %>
@@ -12,7 +12,7 @@
             %>
         </div>
         <div class="marketplace-icon">
-            <%= button_tag(class: 'search-button') do %>
+            <%= button_tag(class: 'mini-button') do %>
               <i class="fas fa-search"></i>
             <% end %>
         </div>
@@ -55,24 +55,23 @@
   </div> %>
 
   <div class="container">
-    <div class="row d-flex justify-content-center">
+    <div class="marketplace-grid mt-3">
       <% @furnitures.each do |furniture| %>
-        <%= link_to furniture_path(furniture) do %>
-        <div class=“col-lg-4 text-right”>
-          <div id="furniture-<%= furniture.id %>" class="furniture-card" style="width: 140px; height: 230px">
-            <img src= "<%= furniture.thumbnail_url %>" alt="thumbnail" style="width: 120px; height: 120px" class="center">
-            <div class="container">
-              <div class="d-flex justify-content-between mt-2 text-blue">
-                <!-- furniture name and button to add to favorites -->
-                <h5 class="card-title"><%= furniture.name.truncate(10) %></h5>
-                <%= link_to '+', marketplace_ar_items_path(furniture_id: furniture.id), method: 'post', remote: true, class: "btn btn-primary" %>
+        <div style="height: 180px;">
+          <%= link_to furniture_path(furniture) do %>
+            <div id="furniture-<%= furniture.id %>" class="furniture-card">
+              <div class="text-center mt-2">
+                <img src= "<%= furniture.thumbnail_url %>" alt="thumbnail" class="card-img-top">
               </div>
-              <p class="text-muted">$<%= furniture.price %></p>
+              <div class="container">
+                <div class="d-flex justify-content-between align-items-center mt-2 text-blue">
+                  <!-- furniture name and button to add to favorites -->
+                  <div class="card-title my-0" style="font-size:14px;"><%= furniture.name.truncate(10) %></div>
+                  <%= link_to '+', marketplace_ar_items_path(furniture_id: furniture.id), method: 'post', remote: true, class: "rounded-button text-center" %>
+                </div>
+                <p class="card-text" style="font-size:12px; color: #2947ED">$<%= furniture.price %></p>
+              </div>
             </div>
-            <!-- <div class="card-body">
-
-            </div> -->
-          </div>
         </div>
         <% end %>
       <% end %>

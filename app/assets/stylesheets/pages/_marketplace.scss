@@ -8,3 +8,24 @@
 .marketplace-icon {
     margin: auto;
 }
+
+.marketplace-grid {
+    display: grid;
+    grid-template: auto / 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 1em;
+}
+
+.furniture-card {
+    border-radius: 16px;
+    height: 100%;
+    background: #F7F7F7;
+    border: 2px solid white;
+  }
+  
+
+.furniture-card .card-img-top {
+    border-radius: 16px;
+    width: 90%;
+    height: 90%;
+}
