@@ -1,24 +1,22 @@
-<div class="container">
-  <div>
-    <%= link_to furnitures_path do %>
-      <h1 class="fas fa-angle-double-left"></h1>
+<div class="container mt-4">
+  <div style="width:56%;">
+    <%= link_to furnitures_path, class: "d-flex justify-content-between align-items-center text-white" do %>
+      <i class="fas fa-long-arrow-alt-left"></i>
+      <p class="my-0" style="font-size:16px">CART</p>
     <% end %>
-    <h1 class="fas fa-shopping-cart"></h1>
   </div>
 
-  <div>
+  <div class="mt-4">
     <% @cart_items.each do |item| %>
-      <div class="card-product mb-3 mt-2 text-dark">
+      <div class="card-product cart-item mb-3 mt-2 text-dark">
         <img src= "<%= item.furniture.thumbnail_url %>">
         <div class="card-product-infos">
           <h2><%= item.furniture.name %></h2>
-          <p><%= item.furniture.description %></p>
-          <p>$<%= item.furniture.price %></p>
-          <%= link_to furniture_path(item.furniture) do %>
-            <i class="fas fa-info-circle"></i>
-          <% end %>
+          <p class="mt-1">Made by <%= item.furniture.manufacturer.name %></p>
+          <p class="mt-1">$<%= item.furniture.price %></p>
           <%= link_to cart_item_path(item), method: :delete, data: { confirm: "Remove item from cart?" } do %>
-            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-trash-alt mt-2"></i>
+            <p class="d-inline">REMOVE</p>
           <% end %>
         </div>
       </div>
