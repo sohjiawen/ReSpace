@@ -37,6 +37,8 @@ gem 'faker'
 
 gem 'cloudinary', '~> 1.16.0'
 
+gem 'money-rails'
+
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
