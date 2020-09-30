@@ -43,49 +43,75 @@ ids = [
   '7AqWZQIaCQf',
   '1YoE664mJTd',
   '7FJFzi2gCfE',
-  'agRfCozhf5k']
+  'agRfCozhf5k',
+  'dptlMEX4tF_',
+  '9TN4PyhWvz1',
+  '6GBcyh7RSuB',
+  '13AL0KYItKD']
 
-  manufacturers = Manufacturer.all
-  themes = Theme.all
+manufacturers = Manufacturer.all
+themes = Theme.all
 
-  ids.each do |id|
-    url = "https://poly.googleapis.com/v1/assets/#{id}/?key=#{ENV['POLY_API_KEY']}";
-    asset = JSON.parse(open(url).read)
+ids.each do |id|
+  url = "https://poly.googleapis.com/v1/assets/#{id}/?key=#{ENV['POLY_API_KEY']}";
+  asset = JSON.parse(open(url).read)
 
-    furniture = Furniture.create!(
-      poly_id: id,
-      name: asset['displayName'],
-      description: Faker::Marketing.buzzwords,
-      price: Faker::Number.decimal(l_digits: 2),
-      manufacturer: manufacturers.sample,
-      rating: Faker::Number.between(from: 0, to: 5),
-      dimension_height: Faker::Number.between(from: 600, to: 800),
-      dimension_width: Faker::Number.between(from: 600, to: 800),
-      theme: themes.sample,
-      preset: Faker::Boolean.boolean,
-      thumbnail_url: asset['thumbnail']['url']
-      )
-    p "Furniture #{furniture.name} created"
-  end
+  furniture = Furniture.create!(
+    poly_id: id,
+    name: asset['displayName'],
+    description: Faker::Marketing.buzzwords,
+    price: Faker::Number.decimal(l_digits: 2),
+    manufacturer: manufacturers.sample,
+    rating: Faker::Number.between(from: 0, to: 5),
+    dimension_height: Faker::Number.between(from: 600, to: 800),
+    dimension_width: Faker::Number.between(from: 600, to: 800),
+    theme: themes.sample,
+    preset: Faker::Boolean.boolean,
+    thumbnail_url: asset['thumbnail']['url']
+    )
+  p "Furniture #{furniture.name} created"
+end
 
-  preset_ids = ['3txPAhYeu-x','cQ0wPsJdliT']
+# seeding presets
 
-  preset_ids.each do |id|
-    url = "https://poly.googleapis.com/v1/assets/#{id}/?key=#{ENV['POLY_API_KEY']}";
-    asset = JSON.parse(open(url).read)
+preset_ids = ['3txPAhYeu-x','13AL0KYItKD']
 
-    furniture = Furniture.create!(
-      poly_id: id,
-      name: asset['displayName'],
-      description: Faker::Marketing.buzzwords,
-      price: Faker::Number.decimal(l_digits: 2),
-      manufacturer: manufacturers.sample,
-      rating: Faker::Number.between(from: 0, to: 5),
-      dimension_height: Faker::Number.between(from: 600, to: 800),
-      dimension_width: Faker::Number.between(from: 600, to: 800),
-      theme: Theme.find_by(name:'Eclectic'),
-      preset: true,
-      thumbnail_url: asset['thumbnail']['url']
-      )
-    p "Furniture #{furniture.name} created"
-  end
+themes.each do |theme|
+  url = "https://poly.googleapis.com/v1/assets/#{preset_ids[0]}/?key=#{ENV['POLY_API_KEY']}";
+  asset = JSON.parse(open(url).read)
+
+  furniture = Furniture.create!(
+    poly_id: id,
+    name: asset['displayName'],
+    description: Faker::Marketing.buzzwords,
+    price: Faker::Number.decimal(l_digits: 2),
+    manufacturer: manufacturers.sample,
+    rating: Faker::Number.between(from: 0, to: 5),
+    dimension_height: Faker::Number.between(from: 600, to: 800),
+    dimension_width: Faker::Number.between(from: 600, to: 800),
+    theme: Theme.find_by(name: theme.name),
+    preset: true,
+    thumbnail_url: asset['thumbnail']['url']
+    )
+  p "Furniture #{furniture.name} created"
+end
+
+themes.each do |theme|
+  url = "https://poly.googleapis.com/v1/assets/#{preset_ids[1]}/?key=#{ENV['POLY_API_KEY']}";
+  asset = JSON.parse(open(url).read)
+
+  furniture = Furniture.create!(
+    poly_id: id,
+    name: asset['displayName'],
+    description: Faker::Marketing.buzzwords,
+    price: Faker::Number.decimal(l_digits: 2),
+    manufacturer: manufacturers.sample,
+    rating: Faker::Number.between(from: 0, to: 5),
+    dimension_height: Faker::Number.between(from: 600, to: 800),
+    dimension_width: Faker::Number.between(from: 600, to: 800),
+    theme: Theme.find_by(name: theme.name),
+    preset: true,
+    thumbnail_url: asset['thumbnail']['url']
+    )
+  p "Furniture #{furniture.name} created"
+end

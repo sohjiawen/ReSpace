@@ -1,48 +1,50 @@
 <div class="container">
-  <div class="mt-3">
-    <div class="row d-flex align-items-center">
-      <div class="col-1">
-        <a href="#">
-          <i class="fas fa-chevron-left text-white"></i>
-        </a>
-      </div>
-      <div class="col-5">
-        <%= form_tag furnitures_path, method: :get do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Search"
-          %>
-          <%= button_tag(class: 'search-button') do %>
-            <i class="fas fa-search"></i>
-          <% end %>
+  <!-- Top navigation bar -->
+  <div class="marketplace-nav mt-3">
+    <div class="row d-flex justify-content-around align-items-center">
+      <div class="search d-flex">
+        <div class="search-bar">
+          <%= form_tag furnitures_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Search"
+            %>
+        </div>
+        <div class="marketplace-icon">
+            <%= button_tag(class: 'search-button') do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+        </div>
         <% end %>
       </div>
-      <div class="col-2">
-        <a href="/myprofile">
-          <i class="far fa-star text-white"></i>
-        </a>
-      </div>
-      <div class="col-2 text-white">
-        <i class="far fa-comment-alt"></i>
-      </div>
-      <%= link_to carts_path do %>
-        <div class="col-2 text-white">
-          <i class="fas fa-shopping-cart"></i>
+      <div class="marketplace-icons d-flex justify-content-center">
+        <div class="marketplace-icon">
+          <a href="/myprofile">
+            <i class="far fa-star text-white"></i>
+          </a>
         </div>
-      <% end %>
+        <div class="text-white marketplace-icon">
+          <i class="far fa-comment-alt"></i>
+        </div>
+        <div class="text-white marketplace-icon">
+          <%= link_to carts_path do %>
+            <i class="fas fa-shopping-cart"></i>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="container">
-    <div class="slider mt-2">
-      <%= link_to 'All', furnitures_path, class: 'btn-marketplace btn-marketplace-color' %>
-      <% Theme::THEMES.each do |theme| %>
-        <%= link_to theme[:name], furnitures_path(theme_name: theme[:name]), class: 'btn-marketplace btn-marketplace-color' %>
-      <% end %>
-    </div>
+
+  <!-- Theme filters -->
+  <div class="slider mt-2">
+    <%= link_to 'All', furnitures_path, class: 'btn-marketplace btn-marketplace-color' %>
+    <% Theme::THEMES.each do |theme| %>
+      <%= link_to theme[:name], furnitures_path(theme_name: theme[:name]), class: 'btn-marketplace btn-marketplace-color' %>
+    <% end %>
   </div>
-  
-  <!-- Sorting -->
+
+  <%# <!-- Sorting -->
   <div class='container d-flex justify-content-end'>
     <select name="sorting" id="sorting-options">
       <option value="" disabled selected>Sort by</option>
@@ -50,7 +52,7 @@
       <option value="price-asc">Price (Low to High)</option>
       <option value="price-desc">Price (High to Low)</option>
     </select>
-  </div>
+  </div> %>
 
   <div class="container">
     <div class="row d-flex justify-content-center">
@@ -76,5 +78,4 @@
       <% end %>
     </div>
   </div>
-
 </div>
