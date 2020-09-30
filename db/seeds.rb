@@ -64,7 +64,7 @@ ids.each do |id|
     poly_id: id,
     name: asset['displayName'],
     description: "This stool is a modern take on the ancient Japanese stool design. Architecturally inspired angles and the splash of colour bring out a unique chair that is both design forward and trendy.",
-    price: Faker::Number.decimal(l_digits: 2),
+    price: (50..200).to_a.sample,
     manufacturer: manufacturers.sample,
     rating: Faker::Number.between(from: 0, to: 5),
     dimension_height: Faker::Number.between(from: 600, to: 800),
@@ -85,10 +85,10 @@ preset_ids.each do |id|
   asset = JSON.parse(open(url).read)
 
   furniture = Furniture.create!(
-    poly_id: id,
+    poly_id: preset_ids[0],
     name: asset['displayName'],
     description: "This stool is a modern take on the ancient Japanese stool design. Architecturally inspired angles and the splash of colour bring out a unique chair that is both design forward and trendy.",
-    price: Faker::Number.decimal(l_digits: 2),
+    price: (50..200).to_a.sample,
     manufacturer: manufacturers.sample,
     rating: Faker::Number.between(from: 0, to: 5),
     dimension_height: Faker::Number.between(from: 600, to: 800),

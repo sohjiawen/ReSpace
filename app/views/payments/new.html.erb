@@ -1,0 +1,32 @@
+<div class="container mt-1">
+  <div>
+    <h2>Checkout summary</h2>
+  </div>
+
+  <div>
+    <% @cart_items.each do |item| %>
+      <div class="card-product mb-2 text-dark" style="width: ">
+        <%= image_tag item.furniture.thumbnail_url %>
+        <div class="card-product-infos">
+          <h2><%= item.furniture.name %></h2>
+          <p><%= humanized_money_with_symbol(item.furniture.price) %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <button id="pay" class="btn btn-primary">Pay</button>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      const paymentButton = document.getElementById('pay');
+      paymentButton.addEventListener('click', () => {
+        const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+        stripe.redirectToCheckout({
+          sessionId: '<%= @order.checkout_session_id %>'
+        });
+      });
+    </script>
+  </div>
+
+</div>
