@@ -1,16 +1,19 @@
-<div class="container pt-1">
+<div class="container mt-1">
+  <div>
+    <h2>Checkout summary</h2>
+  </div>
 
-  <h1>Checkout summary</h1>
-
-  <% @cart_items.each do |item| %>
-    <div class="card-product mb-2 text-dark" style="width: ">
-      <%= image_tag item.furniture.thumbnail_url %>
-      <div class="card-product-infos">
-        <h2><%= item.furniture.name %></h2>
-        <p><%= humanized_money_with_symbol(item.furniture.price) %></p>
+  <div>
+    <% @cart_items.each do |item| %>
+      <div class="card-product mb-2 text-dark" style="width: ">
+        <%= image_tag item.furniture.thumbnail_url %>
+        <div class="card-product-infos">
+          <h2><%= item.furniture.name %></h2>
+          <p><%= humanized_money_with_symbol(item.furniture.price) %></p>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
   <div>
     <button id="pay" class="btn btn-primary">Pay</button>
