@@ -36,7 +36,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   themes();
   selectFurniture();
-  initNavbar();
+  // initNavbar();
 });
 
 import "controllers";
