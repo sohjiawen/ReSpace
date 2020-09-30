@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" data-controller="shopping-cart">
   <!-- Top navigation bar -->
   <div class="marketplace-nav mt-3">
-    <div class="d-flex justify-content-around align-items-center">
+    <div class="d-flex justify-content-between align-items-center">
       <div class="search d-flex">
         <div class="search-bar">
           <%= form_tag furnitures_path, method: :get do %>
@@ -18,20 +18,11 @@
         </div>
         <% end %>
       </div>
-      <div class="marketplace-icons d-flex justify-content-center">
-        <div class="marketplace-icon">
-          <a href="/myprofile">
-            <i class="far fa-star text-white"></i>
-          </a>
-        </div>
-        <div class="text-white marketplace-icon">
-          <i class="far fa-comment-alt"></i>
-        </div>
-        <div class="text-white marketplace-icon">
-          <%= link_to carts_path do %>
-            <i class="fas fa-shopping-cart"></i>
-          <% end %>
-        </div>
+      <div>
+        <%= link_to carts_path do %>
+          <i class="fas fa-shopping-cart fa-lg" style="color:white; position:relative"></i>
+          <span class="badge" data-target="shopping-cart.count"><%= @user.cart_items.length %></span>
+        <% end %>
       </div>
     </div>
   </div>
@@ -69,7 +60,14 @@
                   <div class="card-title my-0" style="font-size:14px;"><%= furniture.name.truncate(10) %></div>
                   <%= link_to '+', marketplace_ar_items_path(furniture_id: furniture.id), method: 'post', remote: true, class: "rounded-button text-center" %>
                 </div>
-                <p class="card-text" style="font-size:12px; color: #2947ED">$<%= furniture.price %></p>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                  <p class="card-text mb-0" style="font-size:12px; color: #2947ED">$<%= furniture.price %></p>
+                  <%= link_to cart_path(furniture), method: "patch", class: "shopping-cart p-0 m-0", data: { action: "click->shopping-cart#addToCart" } do %>
+                  <%# <button class="shopping-cart p-0 m-0" data-action="click->shopping-cart#addToCart"> %>
+                    <i class="fas fa-shopping-cart" style="color:#2947ED;"></i>
+                  <%# </button> %>
+                  <% end %>
+                </div>
               </div>
             </div>
         </div>
