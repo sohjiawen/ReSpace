@@ -1,5 +1,6 @@
 .a-enter-ar, .a-enter-vr {
   top: 80px !important;
+  bottom: 170px !important;
 }
 
 /* By default, hide the DOM Overlay element. */
@@ -19,7 +20,7 @@
   #exit-ar {
     position: absolute;
     right: 40px;
-    bottom: 40px;
+    bottom: 95px;
     background: rgba(127, 127, 127, 0.25);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.25);

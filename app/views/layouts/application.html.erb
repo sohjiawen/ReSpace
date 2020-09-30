@@ -74,7 +74,12 @@
           this.refSpace = null;
           this.selectedFurniture = null;
           this.selected = false;
-          this.el.sceneEl.enterAR();
+          this.el.addEventListener('loaded', function () {
+            setTimeout(function(){
+                console.log('Automatically entering AR...');
+                this.el.sceneEl.enterAR();
+            },1000);
+          });
 
           this.el.sceneEl.renderer.xr.addEventListener("sessionend", ev => {
             this.viewerSpace = null;
