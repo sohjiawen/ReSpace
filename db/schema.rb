@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_021632) do
+ActiveRecord::Schema.define(version: 2020_09_30_035626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_021632) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "cart_id"
+    t.boolean "purchased", default: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["furniture_id"], name: "index_cart_items_on_furniture_id"
   end
@@ -52,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_021632) do
   create_table "furnitures", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.decimal "price"
+    t.float "price"
     t.bigint "manufacturer_id", null: false
     t.integer "rating"
     t.integer "dimension_height"
@@ -83,6 +84,16 @@ ActiveRecord::Schema.define(version: 2020_09_30_021632) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["furniture_id"], name: "index_marketplace_ar_items_on_furniture_id"
     t.index ["user_id"], name: "index_marketplace_ar_items_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "state"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "checkout_session_id"
+    t.bigint "cart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
   create_table "themes", force: :cascade do |t|
@@ -124,6 +135,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_021632) do
   add_foreign_key "furnitures", "themes"
   add_foreign_key "marketplace_ar_items", "furnitures"
   add_foreign_key "marketplace_ar_items", "users"
+  add_foreign_key "orders", "carts"
   add_foreign_key "user_themes", "themes"
   add_foreign_key "user_themes", "users"
 end
