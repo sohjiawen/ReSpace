@@ -60,7 +60,7 @@ ids.each do |id|
     poly_id: id,
     name: asset['displayName'],
     description: Faker::Marketing.buzzwords,
-    price: Faker::Number.decimal(l_digits: 2),
+    price: (50..200).to_a.sample,
     manufacturer: manufacturers.sample,
     rating: Faker::Number.between(from: 0, to: 5),
     dimension_height: Faker::Number.between(from: 600, to: 800),
@@ -81,10 +81,10 @@ themes.each do |theme|
   asset = JSON.parse(open(url).read)
 
   furniture = Furniture.create!(
-    poly_id: id,
+    poly_id: preset_ids[0],
     name: asset['displayName'],
     description: Faker::Marketing.buzzwords,
-    price: Faker::Number.decimal(l_digits: 2),
+    price: (50..200).to_a.sample,
     manufacturer: manufacturers.sample,
     rating: Faker::Number.between(from: 0, to: 5),
     dimension_height: Faker::Number.between(from: 600, to: 800),
@@ -101,10 +101,10 @@ themes.each do |theme|
   asset = JSON.parse(open(url).read)
 
   furniture = Furniture.create!(
-    poly_id: id,
+    poly_id: preset_ids[1],
     name: asset['displayName'],
     description: Faker::Marketing.buzzwords,
-    price: Faker::Number.decimal(l_digits: 2),
+    price: (50..200).to_a.sample,
     manufacturer: manufacturers.sample,
     rating: Faker::Number.between(from: 0, to: 5),
     dimension_height: Faker::Number.between(from: 600, to: 800),

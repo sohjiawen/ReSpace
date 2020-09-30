@@ -9,6 +9,12 @@ class CartsController < ApplicationController
   end
 
   def index
-    @cart_items = CartItem.where(cart: current_user.cart)
+    @cart = current_user.cart
+    @cart_items = CartItem.where(cart: @cart, purchased: false)
+
+    @total = 0
+    @cart_items.each do |item|
+      @total += item.furniture.price
+    end
   end
 end
