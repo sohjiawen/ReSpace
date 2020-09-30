@@ -10,5 +10,10 @@ class CartsController < ApplicationController
 
   def index
     @cart_items = CartItem.where(cart: current_user.cart)
+
+    @total = 0
+    @cart_items.each do |item|
+      @total += item.furniture.price
+    end
   end
 end
