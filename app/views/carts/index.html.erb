@@ -24,13 +24,13 @@
   </div>
 
   <div>
-    <h3>Total: $<%= @total %> </h3>
+    <h4>Total: $<%= @total %> </h4>
   </div>
 
   <div>
     <%= form_with(url: orders_path, local:true) do %>
       <%= hidden_field_tag :total, @total %>
-      <%= submit_tag("Checkout") %>
+      <%= submit_tag("Checkout", class: "btn btn-checkout") %>
     <% end %>
   </div>
 
