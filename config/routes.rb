@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   resources :cart_items, only: [:destroy]
   resources :carts, only: [:index, :update]
   resources :marketplace_ar_items, only: [:create]
+
+  resources :orders, only: [:show, :create] do
+    resources :payments, only: :new
+  end
 end

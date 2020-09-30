@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_one :theme, through: :user_theme
   has_one :cart, dependent: :destroy
   has_many :cart_items, through: :cart
-  has_many :marketplace_ar_items 
+  has_many :marketplace_ar_items, dependent: :destroy
   has_many :furnitures, through: :marketplace_ar_items
 
   after_create :create_cart
