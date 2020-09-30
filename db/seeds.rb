@@ -37,21 +37,9 @@ end
 
 # seeding furnitures
 ids = [
-  'cLydFlVg-wI',
-  '8cnrwlAWqx7',
-  'auSYhIqAZq0',
   '7AqWZQIaCQf',
-  '1YoE664mJTd',
-  '7FJFzi2gCfE',
-  'agRfCozhf5k',
-  'dptlMEX4tF_',
-  '9TN4PyhWvz1',
-  '6GBcyh7RSuB',
   '13AL0KYItKD',
-  'c2AJ5OuKKxR',
-  'eEuXH2lCby7',
-  '7Wl1DthDH7K',
-  '1Ad5f4yRTVY']
+  'eEuXH2lCby7',]
 
 manufacturers = Manufacturer.all
 themes = Theme.all
@@ -76,16 +64,40 @@ ids.each do |id|
   p "Furniture #{furniture.name} created"
 end
 
-# seeding eclectic preset
+# seeding minimalistic preset
 
-preset_ids = ['firh6E5w9uP', 'bLHlyk-d0GK']
+min_preset_ids = ['cLydFlVg-wI', 'auSYhIqAZq0', 'c2AJ5OuKKxR']
 
-preset_ids.each do |id|
+min_preset_ids.each do |id|
   url = "https://poly.googleapis.com/v1/assets/#{id}/?key=#{ENV['POLY_API_KEY']}";
   asset = JSON.parse(open(url).read)
 
   furniture = Furniture.create!(
-    poly_id: preset_ids[0],
+    poly_id: id,
+    name: asset['displayName'],
+    description: "This stool is a modern take on the ancient Japanese stool design. Architecturally inspired angles and the splash of colour bring out a unique chair that is both design forward and trendy.",
+    price: (50..200).to_a.sample,
+    manufacturer: manufacturers.sample,
+    rating: Faker::Number.between(from: 0, to: 5),
+    dimension_height: Faker::Number.between(from: 600, to: 800),
+    dimension_width: Faker::Number.between(from: 600, to: 800),
+    theme: Theme.find_by(name:'Minimalist'),
+    preset: true,
+    thumbnail_url: asset['thumbnail']['url']
+    )
+  p "Furniture #{furniture.name} created"
+end
+
+# seeding eclectic preset
+
+eclec_preset_ids = ['6GBcyh7RSuB', 'cnDk3EzC3Gs']
+
+eclec_preset_ids.each do |id|
+  url = "https://poly.googleapis.com/v1/assets/#{id}/?key=#{ENV['POLY_API_KEY']}";
+  asset = JSON.parse(open(url).read)
+
+  furniture = Furniture.create!(
+    poly_id: id,
     name: asset['displayName'],
     description: "This stool is a modern take on the ancient Japanese stool design. Architecturally inspired angles and the splash of colour bring out a unique chair that is both design forward and trendy.",
     price: (50..200).to_a.sample,
