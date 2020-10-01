@@ -3,6 +3,7 @@ class FurnituresController < ApplicationController
     @user = current_user
     @cart = @user.cart
     @cart_items = CartItem.where(cart: @cart, purchased: false)
+
     if params[:theme_name]
       Theme::THEMES.each do |theme|
         @theme = Theme.find_by(name: params[:theme_name])
