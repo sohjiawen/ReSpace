@@ -1,18 +1,22 @@
-<h1 class="text-left">User Profile</h1>
+<div class="container">
+  <h1 class="text-left">User Profile</h1>
 
-<div>
-  <h2>Favorited</h2>
   <div>
-      <% @favourites.each do |fav| %>
-        <div class="card-product">
-          <img src= "<%= fav.furniture.thumbnail_url %>" alt="thumbnail" style="width: 136px; height: 136px">
-          <div class="card-product-infos">
-            <h2>Product name</h2>
-            <p>Product description with <strong>relevant info</strong> only.</p>
-          </div>
-        </div>
-      <% end %>
-  </div>
-</div>
+    <h5>Purchased Items</h5>
 
-<%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "btn btn-light" %>
+    <div class="mt-4">
+    <% @cart_items_purchased.each do |item| %>
+      <div class="card-product cart-item mb-3 mt-2 text-dark">
+        <img src= "<%= item.furniture.thumbnail_url %>">
+        <div class="card-product-infos">
+          <h2><%= link_to item.furniture.name, furniture_path(item.furniture) %></h2>
+          <p class="mt-1">Made by <%= item.furniture.manufacturer.name %></p>
+          <p class="mt-1">$<%= item.furniture.price %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  </div>
+
+  <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "btn btn-pink" %>
+</div>
