@@ -25,8 +25,6 @@
 
 	<a-camera position="0 1.2 0"></a-camera>
 
-    <%# <a-entity exit-ar-button="element: #exit-ar"></a-entity> %>
-
 	<a-entity id="ar-reticle"
 			ar-hit-test
 			gltf-model="#reticle"
@@ -35,7 +33,7 @@
 
 	<% @furnitures.each_with_index do |furniture, index| %>
 		<a-entity id="poly_furniture-<%= index %>"
-			scale="0.2 0.2 0.2"
+			scale="0.1 0.1 0.1"
 			visible="false"
 			gltf-model="#furniture-<%= index %>"></a-entity>
 	<% end %>
@@ -59,12 +57,3 @@
 	</p>
 	<button id="exit-ar">Exit AR</button>
 </div>
-
-<script>
-	<%# function setSize(scale) {
-		document.getElementById('poly_furniture').setAttribute('scale', {x: scale, y: scale, z: scale});
-	}
-	document.getElementById('btn_full').onclick = setSize.bind(this, 1);
-	document.getElementById('btn_half').onclick = setSize.bind(this, 0.5);
-	document.getElementById('btn_quarter').onclick = setSize.bind(this, 0.0625); %>
-</script>
