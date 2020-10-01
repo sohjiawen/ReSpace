@@ -1,6 +1,8 @@
 <a-scene
       webxr="requiredFeatures: hit-test,local-floor; optionalFeatures: dom-overlay; overlayElement: #ar-overlay"
 	  ar-hit-test="reticle: #ar-reticle"
+	  embedded
+	  vr-mode-ui="enterVRButton: #enter-vr-btn"
 	  inspector="http://localhost:3000/dist/aframe-inspector.js">
 
 	<a-assets>
@@ -24,6 +26,8 @@
 	</a-assets>
 
 	<a-camera position="0 1.2 0"></a-camera>
+
+	<a id="enter-vr-btn" href="#" hidden></a>
 
 	<a-entity id="ar-reticle"
 			ar-hit-test
