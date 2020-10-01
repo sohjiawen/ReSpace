@@ -29,14 +29,12 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 import { themes } from '../plugins/initThemeImages'
 import { selectFurniture } from '../plugins/select-furniture'
-import { initNavbar } from '../plugins/initNavbar'
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   themes();
   selectFurniture();
-  // initNavbar();
 });
 
 import "controllers";
