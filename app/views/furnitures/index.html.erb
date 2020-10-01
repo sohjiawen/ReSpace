@@ -20,8 +20,9 @@
       </div>
       <div>
         <%= link_to carts_path do %>
-          <i class="fas fa-shopping-cart fa-lg" style="color:white; position:relative"></i>
-          <span class="badge" data-target="shopping-cart.count"><%= @user.cart_items.length %></span>
+          <i class="fas fa-shopping-cart fa-lg" style="color:white; position:relative">
+            <span class="badge" data-target="shopping-cart.count"><%= @user.cart_items.length %></span>
+          </i>
         <% end %>
       </div>
     </div>
@@ -48,7 +49,7 @@
   <div class="container">
     <div class="marketplace-grid mt-3">
       <% @furnitures.each do |furniture| %>
-        <div style="height: 180px;">
+        <div style="height: 200px;">
           <%= link_to furniture_path(furniture) do %>
             <div id="furniture-<%= furniture.id %>" class="furniture-card">
               <div class="text-center mt-2">
@@ -58,11 +59,13 @@
                 <div class="d-flex justify-content-between align-items-center mt-2 text-blue">
                   <!-- furniture name and button to add to favorites -->
                   <div class="card-title my-0" style="font-size:14px;"><%= furniture.name.truncate(10) %></div>
-                  <%= link_to '+', marketplace_ar_items_path(furniture_id: furniture.id), method: 'post', remote: true, class: "rounded-button text-center" %>
+                  <%= link_to marketplace_ar_items_path(furniture_id: furniture.id), method: 'post', remote: true do %>
+                    <i class="fas fa-vr-cardboard"></i>
+                  <% end %>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mt-2">
                   <p class="card-text mb-0" style="font-size:12px; color: #2947ED">$<%= furniture.price %></p>
-                  <%= link_to cart_path(furniture), method: "patch", class: "shopping-cart p-0 m-0", data: { action: "click->shopping-cart#addToCart" } do %>
+                  <%= link_to cart_path(@user.cart, furniture_id: furniture.id), method: "patch", class: "shopping-cart p-0 m-0", data: { action: "click->shopping-cart#addToCart" } do %>
                   <%# <button class="shopping-cart p-0 m-0" data-action="click->shopping-cart#addToCart"> %>
                     <i class="fas fa-shopping-cart" style="color:#2947ED;"></i>
                   <%# </button> %>

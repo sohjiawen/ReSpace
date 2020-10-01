@@ -1,9 +1,18 @@
-<div class="furniture-show">
+<div class="furniture-show" data-controller="shopping-cart">
   <div class="show-img">
-    <a href="/furnitures">
-      <i class="fas fa-long-arrow-alt-left px-4 py-3"></i>
-    </a>
     <img src=" <%= @furniture.thumbnail_url %> " alt=" <%= @furniture.name %> " style="width:100%;">
+    <div>
+      <%= link_to furnitures_path do %>
+        <i class="fas fa-long-arrow-alt-left px-4 py-3 back-to-furnitures"></i>
+      <% end %>
+      <div class="show-cart px-4 py-3">
+        <%= link_to carts_path do %>
+          <i class="fas fa-shopping-cart fa-lg" style="color:white; position:relative">
+            <span class="badge" data-target="shopping-cart.count"><%= @cart.cart_items.length %></span>
+          </i>
+        <% end %>
+      </div>
+    </div>
   </div>
   <div class="px-3 py-1">
     <div class="d-flex justify-content-between align-items-center mt-3">
@@ -21,7 +30,7 @@
     <div class="mt-3">
       <%= form_with(url: cart_path(@cart), model: @cart, local:true) do |form| %>
         <%= hidden_field_tag :furniture_id, @furniture.id %>
-        <%= form.submit "Add To Cart", class: 'add-to-cart' %>
+        <%= form.submit "Add To Cart", class: 'add-to-cart', data: { action: "click->shopping-cart#addToCart" } %>
       <% end %>
     </div>
   </div>

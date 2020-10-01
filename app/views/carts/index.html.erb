@@ -12,7 +12,7 @@
       <div class="card-product cart-item mb-3 mt-2 text-dark">
         <img src= "<%= item.furniture.thumbnail_url %>">
         <div class="card-product-infos">
-          <h2><%= item.furniture.name %></h2>
+          <h2><%= link_to item.furniture.name, furniture_path(item.furniture) %></h2>
           <p class="mt-1">Made by <%= item.furniture.manufacturer.name %></p>
           <p class="mt-1">$<%= item.furniture.price %></p>
           <%= link_to cart_item_path(item), method: :delete, data: { confirm: "Remove item from cart?" } do %>
