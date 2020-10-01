@@ -1,11 +1,8 @@
-btn-plus {
-  border-radius: 50%;
-}
-
 .btn {
   color: white;
 }
 
+// pink button white text, small
 .btn-pink {
   background-color: #E07F9E;
   color: white;
@@ -13,8 +10,17 @@ btn-plus {
   font-size: 10px;
 }
 
+// pink button white text, large
+.btn-pink-lg {
+  background-color: #E07F9E;
+  color: white;
+  border-radius: 15px;
+  font-size: 14px;
+}
+
 // themes buttons
-.btn-marketplace {
+// white button, pink text and border
+.btn-white-pink {
     font-family: "Poppins",sans-serif;
     font-weight: bold;
     font-size: 12px;
@@ -24,13 +30,16 @@ btn-plus {
     display: inline-block;
     border-radius: 11px;
     transition:opacity .3s;
+    color: #E07F9E;
+   border: 2px solid #E07F9E;
+   background: #FFFFFF;
 }
 
-.btn-marketplace-color {
- color: #E07F9E;
- border: 2px solid #E07F9E;
- background: #FFFFFF;
-}
+// .btn-marketplace-color {
+//  color: #E07F9E;
+//  border: 2px solid #E07F9E;
+//  background: #FFFFFF;
+// }
 
 .btn:hover{
 opacity:.9;
@@ -47,9 +56,3 @@ opacity:.9;
   font-size: 12px;
 }
 
-.btn-pink-lg {
-  background-color: #E07F9E;
-  color: white;
-  border-radius: 15px;
-  font-size: 14px;
-}
