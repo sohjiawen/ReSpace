@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Respace</title>
-  <link rel='icon' href="<%= asset_path "respace-favicon-02.png" %>" type='image/x-icon'/ >
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -68,7 +67,7 @@
         schema: {
           reticle: { type: "selector" }
         },
-
+        
         init: function() {
           this.xrHitTestSource = null;
           this.viewerSpace = null;
@@ -103,7 +102,7 @@
 
             session.requestReferenceSpace("viewer").then(space => {
               this.viewerSpace = space;
-              session
+              session 
               .requestHitTestSource({ space: this.viewerSpace })
               .then(hitTestSource => {
                 this.xrHitTestSource = hitTestSource;
@@ -163,11 +162,6 @@
 
   <body>
     <%= render 'shared/flashes' %>
-    <div class="main-wrapper", style="padding-bottom: 60px;">
-      <%= yield %>
-      <% unless current_page?(new_user_session_path)||current_page?(new_user_registration_path)||current_page?(root_path) %>
-        <%= render 'shared/navbar' %>
-      <% end %>
-    </div>
+    <%= yield %>
   </body>
   </html>

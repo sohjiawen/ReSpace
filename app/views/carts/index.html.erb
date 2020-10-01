@@ -10,7 +10,9 @@
   <div class="mt-4">
     <% @cart_items.each do |item| %>
       <div class="card-product cart-item mb-3 mt-2 text-dark">
-        <img src= "<%= item.furniture.thumbnail_url %>">
+        <div>
+          <%= cl_image_tag item.furniture.image.key, crop: :fill %>
+        </div>
         <div class="card-product-infos">
           <h2><%= link_to item.furniture.name, furniture_path(item.furniture) %></h2>
           <p class="mt-1">Made by <%= item.furniture.manufacturer.name %></p>
