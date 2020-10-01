@@ -4,7 +4,7 @@ export default class extends Controller {
   static targets = [ 'count' ];
 
   connect() {
-    setInterval(this.refresh, 100);
+    setInterval(this.addToCart, 100);
   }
 
   addToCart = () => {

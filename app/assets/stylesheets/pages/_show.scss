@@ -4,10 +4,16 @@
 .show-img img {
   display: block;
 }
-.show-img a {
+.back-to-furnitures {
    position: absolute; top:0; left:0;
    color: white;
    font-size: 25px;
+}
+
+.show-cart {
+  position: absolute;
+  top:0;
+  right:0;
 }
 
 .furniture-show h3 {

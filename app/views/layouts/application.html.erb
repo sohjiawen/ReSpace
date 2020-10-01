@@ -174,7 +174,7 @@ AFRAME.registerComponent("exit-ar-button", {
 
   <body>
     <%= render 'shared/flashes' %>
-    <div class="main-wrapper">
+    <div class="main-wrapper", style="margin-bottom: 400px;">
       <%= yield %>
       <% unless current_page?(new_user_session_path)||current_page?(new_user_registration_path)||current_page?(root_path) %>
         <%= render 'shared/navbar' %>
