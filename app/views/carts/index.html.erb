@@ -41,7 +41,7 @@
   <div>
     <%= form_with(url: orders_path, local:true) do %>
       <%= hidden_field_tag :total, @total %>
-      <%= submit_tag("Checkout", class:"btn btn-pink-lg") %>
+      <%= submit_tag("Checkout", class:"btn btn-pink-lg w-100") %>
     <% end %>
   </div>
 
