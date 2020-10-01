@@ -18,7 +18,7 @@ class FurnituresController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: { cart: @user.cart_items } }
+      format.json { render json: { cart: @cart_items } }
     end
   end
 
