@@ -162,11 +162,6 @@
 
   <body>
     <%= render 'shared/flashes' %>
-    <div class="main-wrapper", style="padding-bottom: 60px;">
-      <%= yield %>
-      <% unless current_page?(new_user_session_path)||current_page?(new_user_registration_path)||current_page?(root_path) %>
-        <%= render 'shared/navbar' %>
-      <% end %>
-    </div>
+    <%= yield %>
   </body>
   </html>

@@ -2,7 +2,7 @@
 .landing-image {
    position: relative;
    min-width: 100%;
-   min-height: 100%;
+   min-height: 100vh;
    margin: auto;
    background-image: asset_url('landing-page-image.png');
    background-size: cover;

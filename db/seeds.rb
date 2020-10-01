@@ -39,7 +39,8 @@ end
 ids = [
   '7AqWZQIaCQf',
   '13AL0KYItKD',
-  'eEuXH2lCby7',]
+  'eEuXH2lCby7'
+]
 
 manufacturers = Manufacturer.all
 themes = Theme.all
@@ -47,8 +48,7 @@ themes = Theme.all
 ids.each do |id|
   url = "https://poly.googleapis.com/v1/assets/#{id}/?key=#{ENV['POLY_API_KEY']}";
   asset = JSON.parse(open(url).read)
-
-  furniture = Furniture.create!(
+  furniture = Furniture.new(
     poly_id: id,
     name: asset['displayName'],
     description: "This stool is a modern take on the ancient Japanese stool design. Architecturally inspired angles and the splash of colour bring out a unique chair that is both design forward and trendy.",
@@ -59,8 +59,10 @@ ids.each do |id|
     dimension_width: Faker::Number.between(from: 600, to: 800),
     theme: themes.sample,
     preset: Faker::Boolean.boolean,
-    thumbnail_url: asset['thumbnail']['url']
     )
+    file = File.open(File.join(Rails.root, 'db','images',"#{furniture.name}.png"))
+    furniture.image.attach(io: file, filename: asset['displayName'], content_type: 'image/png')
+    furniture.save
   p "Furniture #{furniture.name} created"
 end
 
@@ -72,7 +74,7 @@ min_preset_ids.each do |id|
   url = "https://poly.googleapis.com/v1/assets/#{id}/?key=#{ENV['POLY_API_KEY']}";
   asset = JSON.parse(open(url).read)
 
-  furniture = Furniture.create!(
+  furniture = Furniture.new(
     poly_id: id,
     name: asset['displayName'],
     description: "This stool is a modern take on the ancient Japanese stool design. Architecturally inspired angles and the splash of colour bring out a unique chair that is both design forward and trendy.",
@@ -82,9 +84,12 @@ min_preset_ids.each do |id|
     dimension_height: Faker::Number.between(from: 600, to: 800),
     dimension_width: Faker::Number.between(from: 600, to: 800),
     theme: Theme.find_by(name:'Minimalist'),
-    preset: true,
-    thumbnail_url: asset['thumbnail']['url']
+    preset: true
     )
+
+    file = File.open(File.join(Rails.root, 'db','images',"#{furniture.name}.png"))
+    furniture.image.attach(io: file, filename: asset['displayName'], content_type: 'image/png')
+    furniture.save
   p "Furniture #{furniture.name} created"
 end
 
@@ -96,7 +101,7 @@ eclec_preset_ids.each do |id|
   url = "https://poly.googleapis.com/v1/assets/#{id}/?key=#{ENV['POLY_API_KEY']}";
   asset = JSON.parse(open(url).read)
 
-  furniture = Furniture.create!(
+  furniture = Furniture.new(
     poly_id: id,
     name: asset['displayName'],
     description: "This stool is a modern take on the ancient Japanese stool design. Architecturally inspired angles and the splash of colour bring out a unique chair that is both design forward and trendy.",
@@ -106,8 +111,11 @@ eclec_preset_ids.each do |id|
     dimension_height: Faker::Number.between(from: 600, to: 800),
     dimension_width: Faker::Number.between(from: 600, to: 800),
     theme: Theme.find_by(name:'Eclectic'),
-    preset: true,
-    thumbnail_url: asset['thumbnail']['url']
+    preset: true
     )
+    
+    file = File.open(File.join(Rails.root, 'db','images',"#{furniture.name}.png"))
+    furniture.image.attach(io: file, filename: asset['displayName'], content_type: 'image/png')
+    furniture.save
   p "Furniture #{furniture.name} created"
 end

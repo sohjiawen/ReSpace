@@ -49,11 +49,11 @@
   <div class="container">
     <div class="marketplace-grid mt-3">
       <% @furnitures.each do |furniture| %>
-        <div style="height: 200px;">
+        <div>
           <%= link_to furniture_path(furniture) do %>
             <div id="furniture-<%= furniture.id %>" class="furniture-card">
               <div class="text-center mt-2">
-                <img src= "<%= furniture.thumbnail_url %>" alt="thumbnail" class="card-img-top">
+                <%= cl_image_tag furniture.image.key, height: 300, crop: :fill, class:"card-img-top" %>
               </div>
               <div class="container">
                 <div class="d-flex justify-content-between align-items-center mt-2 text-blue">
@@ -63,7 +63,7 @@
                     <i class="fas fa-vr-cardboard"></i>
                   <% end %>
                 </div>
-                <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="d-flex justify-content-between align-items-center mt-2 pb-2">
                   <p class="card-text mb-0" style="font-size:12px; color: #2947ED">$<%= furniture.price %></p>
                   <%= link_to cart_path(@user.cart, furniture_id: furniture.id), method: "patch", class: "shopping-cart p-0 m-0", data: { action: "click->shopping-cart#addToCart" } do %>
                     <i class="fas fa-shopping-cart"></i>

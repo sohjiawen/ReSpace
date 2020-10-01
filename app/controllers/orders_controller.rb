@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         name: @cart.id,
-        images: @cart.furnitures.map(&:thumbnail_url),
+        images: @cart.furnitures.map(&:image),
         amount: @order.amount_cents,
         currency: 'sgd',
         quantity: 1

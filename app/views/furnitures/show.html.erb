@@ -1,6 +1,6 @@
 <div class="furniture-show" data-controller="shopping-cart">
   <div class="show-img">
-    <img src=" <%= @furniture.thumbnail_url %> " alt=" <%= @furniture.name %> " style="width:100%;">
+    <%= cl_image_tag @furniture.image.key, width: 400, crop: :fill %>
     <div>
       <%= link_to furnitures_path do %>
         <i class="fas fa-long-arrow-alt-left px-4 py-3 back-to-furnitures"></i>

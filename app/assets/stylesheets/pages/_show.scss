@@ -1,9 +1,18 @@
 .show-img {
   position: relative;
 }
-.show-img img {
-  display: block;
+.show-img {
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  img{ 
+    height: 35vh;
+    object-fit: contain; 
+  }
 }
+
 .back-to-furnitures {
    position: absolute; top:0; left:0;
    color: white;

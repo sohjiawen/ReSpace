@@ -10,7 +10,7 @@
   <div class="mt-4">
     <% @cart_items.each do |item| %>
       <div class="card-product cart-item mb-3 mt-2 text-dark">
-        <img src= "<%= item.furniture.thumbnail_url %>">
+        <img src= "<%= item.furniture.image.key %>">
         <div class="card-product-infos">
           <h2><%= item.furniture.name %></h2>
           <p class="mt-1">$<%= item.furniture.price %></p>
