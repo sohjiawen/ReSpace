@@ -5,13 +5,13 @@
     <div class="mb-4">
       <%= cl_image_tag 'Screenshot_2020-10-01_at_11.35.32_AM_iiuyzq', style: 'height: 140px' %>
     </div>
-    <div style="font-size: 14px">
+    <div class="text-pink" style="font-size: 14px">
       <p class="mb-0">Your payment was successful!</p>
-      <p>Your order number is <strong><%= (12345..98765).to_a.sample%></strong></p>
+      <p class="mb-0">Order number: <strong><%= (12345..98765).to_a.sample%></strong></p>
     </div>
 
     <div>
-      <%= link_to 'Back to marketplace', furnitures_path, class: "btn btn-pink-lg mt-3" %>
+      <%= link_to 'Back to marketplace', furnitures_path, class: "btn btn-white-pink mt-3" %>
     </div>
 
   </div>
