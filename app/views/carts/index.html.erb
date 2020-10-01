@@ -24,6 +24,14 @@
     <% end %>
   </div>
 
+  <!-- remove all items -->
+  <div>
+    <%= link_to carts_path, method: :delete, data: { confirm: "Remove all items from cart?" } do %>
+      <i class="fas fa-trash-alt mt-2 text-grey"></i>
+      <p class="d-inline text-grey">REMOVE ALL</p>
+    <% end %>
+  </div>
+
   <div>
     <h4>Total: $<%= @total %> </h4>
   </div>
