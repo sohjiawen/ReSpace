@@ -1,11 +1,10 @@
 class CartsController < ApplicationController
   def update
     @cart = current_user.cart
-    @furniture = Furniture.find(params[:furniture_id])
+    params[:id] ? @furniture = Furniture.find(params[:id]) : @furniture = Furniture.find(params[:furniture_id])
     @new_item = CartItem.new(furniture: @furniture, cart: @cart)
     if @new_item.save!
       flash[:notice] = "You've added this item to cart."
-      redirect_to furniture_path(@furniture)
     end
   end
 

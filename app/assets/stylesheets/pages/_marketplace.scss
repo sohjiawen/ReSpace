@@ -29,3 +29,17 @@
     width: 90%;
     height: 90%;
 }
+
+.marketplace-nav .badge {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 14px;
+    right: 6px;
+}
+
+.shopping-cart {
+    border: none;
+    background-color: transparent;
+}

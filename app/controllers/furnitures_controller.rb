@@ -1,5 +1,7 @@
 class FurnituresController < ApplicationController
   def index
+    @user = current_user
+    
     if params[:theme_name]
       Theme::THEMES.each do |theme|
         @theme = Theme.find_by(name: params[:theme_name])
@@ -10,6 +12,11 @@ class FurnituresController < ApplicationController
       @furnitures = Furniture.where(sql_query, query: "%#{params[:query]}%")
     else
       @furnitures = Furniture.all
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { cart: @user.cart_items } }
     end
   end
 
