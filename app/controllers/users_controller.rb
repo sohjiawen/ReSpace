@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
   def myprofile
-    @favourites = Favourite.all
+    @cart_items_purchased = current_user.cart_items.where(purchased: true)
   end
 end

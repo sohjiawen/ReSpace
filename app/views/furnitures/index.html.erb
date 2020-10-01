@@ -30,9 +30,9 @@
 
   <!-- Theme filters -->
   <div class="slider mt-2">
-    <%= link_to 'All', furnitures_path, class: 'btn-marketplace btn-marketplace-color' %>
+    <%= link_to 'All', furnitures_path, class: 'btn-white-pink' %>
     <% Theme::THEMES.each do |theme| %>
-      <strong><%= link_to theme[:name], furnitures_path(theme_name: theme[:name]), class: 'btn-marketplace btn-marketplace-color'%></strong>
+      <strong><%= link_to theme[:name], furnitures_path(theme_name: theme[:name]), class: 'btn-white-pink'%></strong>
     <% end %>
   </div>
 
