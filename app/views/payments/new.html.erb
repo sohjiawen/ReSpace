@@ -1,16 +1,20 @@
 <div class="container mt-4">
 
- <div style="width:56%;" class="d-flex justify-content-between align-items-center text-white">
+  <div style="width:56%;" class="d-flex justify-content-between align-items-center text-white">
     <%= link_to carts_path do %>
       <i class="fas fa-long-arrow-alt-left text-white"></i>
     <% end %>
       <p class="my-0 text-white" style="font-size:18px">Checkout</p>
   </div>
 
+  <div>
+    <p class="my-0 text-white py-3" style="font-size:14px">Please confirm your order(s) before proceeding to payment!</p>
+  </div>
+
   <div class="mt-4">
     <% @cart_items.each do |item| %>
       <div class="card-product cart-item mb-3 mt-2 text-dark">
-        <img src= "<%= item.furniture.image.key %>">
+        <%= cl_image_tag item.furniture.image.key, crop: :fill %>
         <div class="card-product-infos">
           <h2><%= item.furniture.name %></h2>
           <p class="mt-1">$<%= item.furniture.price %></p>
@@ -20,7 +24,7 @@
   </div>
 
   <div>
-    <button id="pay" class="btn btn-pink-lg">Pay</button>
+    <button id="pay" class="btn btn-pink-lg w-100">Pay</button>
     <script src="https://js.stripe.com/v3/"></script>
     <script>
       const paymentButton = document.getElementById('pay');

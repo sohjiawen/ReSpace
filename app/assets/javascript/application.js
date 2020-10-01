@@ -1,2 +1,2 @@
-//= require rails-ujs
-//= require ./cable.js
+//= require jquery
+//= require jquery_ujs
