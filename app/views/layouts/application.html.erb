@@ -3,13 +3,17 @@
 <head>
   <title>Respace</title>
   <link rel='icon' href="<%= asset_path "respace-favicon-02.png" %>" type='image/x-icon'/ >
+  <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable"  content="yes">
 
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+  <%= render 'shared/ios_pwa_links' %>
 
 <!-- import the webpage's javascript files -->
 <script src="https://rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script>
