@@ -3,6 +3,7 @@ class CartsController < ApplicationController
     @cart = current_user.cart
     @furniture = Furniture.find(params[:furniture_id])
     @new_item = CartItem.new(furniture: @furniture, cart: @cart)
+    @new_item.save
   end
 
   def index

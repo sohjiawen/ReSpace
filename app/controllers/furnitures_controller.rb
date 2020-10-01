@@ -1,6 +1,8 @@
 class FurnituresController < ApplicationController
   def index
     @user = current_user
+    @cart = @user.cart
+    @cart_items = CartItem.where(cart: @cart, purchased: false)
     
     if params[:theme_name]
       Theme::THEMES.each do |theme|
@@ -23,6 +25,7 @@ class FurnituresController < ApplicationController
   def show
     @furniture = Furniture.find(params[:id])
     @cart = current_user.cart
+    @cart_items = CartItem.where(cart: @cart, purchased: false)
   end
 
 

@@ -1,5 +1,9 @@
 .search-bar {
-    width: 80%;
+    width: 85%;
+}
+
+.search-bar .form-control {
+    border-radius: 12px;
 }
 
 .marketplace-icons {
@@ -21,7 +25,11 @@
     height: 100%;
     background: #F7F7F7;
     border: 2px solid white;
-  }
+}
+
+.furniture-card i {
+    color: #2947ED;
+}
   
 
 .furniture-card .card-img-top {
