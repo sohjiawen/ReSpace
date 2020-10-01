@@ -3,18 +3,11 @@
   <div class="text-center">
     <p>Your payment was successful!</p>
     <p>Your order number is <strong><%= (12345..98765).to_a.sample%></strong></p>
-    <p>ReSpace </p>
-  </div>
-
-  <!-- green tick for succesful payment -->
-  <div id="mark"></div>
-  <input type="checkbox" id="check" checked="checked" />
-  <label for="check"></label>
-  <div>
-    <span class="checkbox"></span>
+    <p>ReSpace</p>
   </div>
 
   <div class="text-center mt-5">
+    <%= cl_image_tag 'hiclipart.com_c07pvx', style: 'height: 200px' %>
     <%= link_to 'Back to marketplace', furnitures_path, class: "btn btn-pink-lg mt-3" %>
   </div>
 
