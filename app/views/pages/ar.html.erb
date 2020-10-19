@@ -19,7 +19,7 @@
 	<!-- Environment for 2D and VR viewing. It's auto-hidden in AR mode. -->
 	<a-entity environment="preset: tron; lighting: none; shadow: none; lightPosition: 0 2.15 0"
 			  hide-in-ar-mode></a-entity>
-    
+
     <a-entity light="type: hemisphere; intensity: 1"></a-entity>
 	<a-light type="directional"
 			 light="castShadow: true;
@@ -34,28 +34,28 @@
 			 position="-2 4 2">
 	</a-light>
 
-    <a-entity id="reticle"
+    <a-entity exit-ar-button="element: #exit-ar"></a-entity>
+
+    <a-entity id="model" position="0 0 0">
+      <a-entity id="reticle"
         gltf-model="#reticle"
         scale="0.8 0.8 0.8"
         ar-hit-test
         position="0 0 -2"
-      ></a-entity>
-
-    <a-entity exit-ar-button="element: #exit-ar"></a-entity>
-
-	<a-entity id="poly_furniture" position="-1 0 -3" scale="0.8 0.8 0.8">
-		<a-entity
-			position="0 2.15 0"
-			gltf-model="#furniture"
-			animation-mixer
-			shadow="cast: true; receive: false"></a-entity>
+      >
+  		<a-entity id="poly_furniture"
+  			position="0 2.15 0"
+        scale="0.8 0.8 0.8"
+  			gltf-model="#furniture"
+  			animation-mixer
+  			shadow="cast: true; receive: false"></a-entity>
 
     <!-- This shadow-receiving plane is only visible in AR mode.-->
     <a-plane height="30" width="30" rotation="-90 0 0"
                 shadow="receive: true"
                 ar-shadows="opacity: 0.2"
-                visible="false"></a-plane> 
-    
+                visible="false"></a-plane>
+
 </a-scene>
 
 <div id="overlay">
