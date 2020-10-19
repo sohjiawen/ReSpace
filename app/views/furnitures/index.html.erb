@@ -1,25 +1,79 @@
-<div>
-  <div class="d-flex justify-content-center">
-    <H1> Welcome to the marketplace</H1>
-    <a href="/myprofile">
-      <i class="far fa-star"></i>
-    </a>
-  </div>
-  <div class="row">
-    <% @furnitures.each do |furniture| %>
-    <div class=“col-6 col-lg-4 text-center”>
-      <div class="card" style="width: 200px; height: 300px">
-        <img src= "<%= furniture.thumbnail_url %>" alt="thumbnail" style="width: 190px; height: 140px">
-        <div class="text-right">
-          <a href="#" class="btn btn-primary btn-plus">+</a>
+<div class="container">
+  <!-- Top navigation bar -->
+  <div class="marketplace-nav mt-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="search d-flex" style="width:90%">
+        <div class="search-bar">
+          <%= form_tag furnitures_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Search"
+            %>
         </div>
-        <div class="card-body">
-          <h5 class="card-title"><%=link_to furniture.name, furniture_path(furniture) %></h5>
-          <p class="text-muted">$<%= furniture.price %></p>
+        <div class="marketplace-icon">
+            <%= button_tag(class: 'mini-button') do %>
+              <i class="fas fa-search"></i>
+            <% end %>
         </div>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to carts_path do %>
+          <i class="fas fa-shopping-cart fa-lg" style="color:white; position:relative">
+            <span id="cart-item-counter" class="badge"><%= @cart_items.length %></span>
+          </i>
+        <% end %>
       </div>
     </div>
   </div>
-  <% end %>
-</div>
 
+  <!-- Theme filters -->
+  <div class="slider mt-2">
+    <%= link_to 'All', furnitures_path, class: 'btn-white-pink' %>
+    <% Theme::THEMES.each do |theme| %>
+      <strong><%= link_to theme[:name], furnitures_path(theme_name: theme[:name]), class: 'btn-white-pink'%></strong>
+    <% end %>
+  </div>
+
+  <%# <!-- Sorting -->
+  <div class='container d-flex justify-content-end'>
+    <select name="sorting" id="sorting-options">
+      <option value="" disabled selected>Sort by</option>
+      <option value="date-asc">Most Recent</option>
+      <option value="price-asc">Price (Low to High)</option>
+      <option value="price-desc">Price (High to Low)</option>
+    </select>
+  </div> %>
+
+  <div class="container">
+    <div class="marketplace-grid mt-3">
+      <% @furnitures.each do |furniture| %>
+        <div>
+          <%= link_to furniture_path(furniture) do %>
+            <div id="furniture-<%= furniture.id %>" class="furniture-card">
+              <div class="text-center mt-2">
+                <%= cl_image_tag furniture.image.key, height: 300, crop: :fill, class:"card-img-top" %>
+              </div>
+              <div class="container">
+                <div class="d-flex justify-content-between align-items-center mt-2 text-blue">
+                  <!-- furniture name and button to add to favorites -->
+                  <div class="card-title my-0" style="font-size:14px;"><%= furniture.name.truncate(10) %></div>
+                  <%= link_to marketplace_ar_items_path(furniture_id: furniture.id), method: 'post', remote: true do %>
+                    <i class="fas fa-vr-cardboard"></i>
+                  <% end %>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-2 pb-2">
+                  <p class="card-text mb-0" style="font-size:12px; color: #2947ED">$<%= furniture.price %></p>
+                  <%= link_to cart_path(@user.cart, furniture_id: furniture.id), method: "patch", remote: true, class: "shopping-cart p-0 m-0" do %>
+                    <i class="fas fa-shopping-cart"></i>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

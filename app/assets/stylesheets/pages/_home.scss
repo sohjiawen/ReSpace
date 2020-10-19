@@ -1,1 +1,26 @@
 // Specific CSS for your home-page
+.landing-image {
+   position: relative;
+   min-width: 100%;
+   min-height: 100vh;
+   margin: auto;
+   background-image: asset_url('landing-page-image.png');
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.landing-image-wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding-block-start: 120px;
+}
+
+.landing-image-wrapper h3 {
+   font-size: 7vw;
+}
+
+.landing-text {
+  text-shadow: 2px 0px 7px #b5b7c0;
+}

@@ -8,4 +8,12 @@ Rails.application.routes.draw do
   resources :furnitures, only: [:index, :show]
   get '/myprofile', to: 'users#myprofile'
   resources :user_themes, only: [:create]
+  resources :cart_items, only: [:destroy]
+  delete '/carts', to: 'cart_items#destroy_all'
+  resources :carts, only: [:index, :update]
+  resources :marketplace_ar_items, only: [:create]
+
+  resources :orders, only: [:show, :create] do
+    resources :payments, only: :new
+  end
 end

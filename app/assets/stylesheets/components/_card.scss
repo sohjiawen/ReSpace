@@ -1,18 +1,55 @@
 .theme-img {
   border-radius: 20px;
-  width: 180px;
+  width: 130px;
   border: 5px solid white
 }
 .bg-light {
   background-color: #09122F !important;;
 }
 
-// .card {
-//   margin: 20px;
-//   border-radius: 5px;
-//   background: rgba(255, 251, 247, 0.9);
-//   border: 5px solid #E07F9E;
-// }
-// .card-body {
-//   padding: 0px;
-// }
+.card-body {
+  padding: 0px;
+}
+
+.card-title {
+  display: block;
+}
+
+img.center {
+    display: block;
+    margin: 5px auto;
+}
+
+.card-product {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-product img {
+  height: 100%;
+  width: 100px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 0px;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}

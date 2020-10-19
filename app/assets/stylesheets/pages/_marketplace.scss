@@ -1,0 +1,44 @@
+.search-bar {
+    width: 85%;
+}
+
+.search-bar .form-control {
+    border-radius: 12px;
+}
+
+.marketplace-icons {
+    width: 30%;
+}
+.marketplace-icon {
+    margin: auto;
+}
+
+.marketplace-grid {
+    display: grid;
+    grid-template: auto / 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 1em;
+}
+
+.furniture-card {
+    border-radius: 16px;
+    height: 100%;
+    background: #E6E3E2;
+    border: 2px solid #E07F9E;
+}
+
+.furniture-card i {
+    color: #2947ED;
+}
+  
+
+.furniture-card .card-img-top {
+    border-radius: 16px;
+    width: 80%;
+    height: 90%;
+}
+
+.shopping-cart {
+    border: none;
+    background-color: transparent;
+}

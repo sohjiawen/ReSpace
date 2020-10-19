@@ -28,9 +28,15 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { themes } from '../plugins/initThemeImages'
+import { selectFurniture } from '../plugins/select-furniture'
+import { exitAr } from '../plugins/exit-ar'
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   themes();
+  selectFurniture();
+  exitAr();
 });
+
+import "controllers";

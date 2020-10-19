@@ -1,0 +1,48 @@
+<div class="container mt-4">
+
+  <div style="width:56%;" class="d-flex justify-content-between align-items-center text-white">
+    <%= link_to furnitures_path do %>
+      <i class="fas fa-long-arrow-alt-left text-white"></i>
+    <% end %>
+      <p class="my-0 text-white" style="font-size:18px">Cart</p>
+  </div>
+
+  <div class="mt-4">
+    <% @cart_items.each do |item| %>
+      <div class="card-product cart-item mb-3 mt-2 text-dark">
+        <div>
+          <%= cl_image_tag item.furniture.image.key, crop: :fill %>
+        </div>
+        <div class="card-product-infos">
+          <h2><%= link_to item.furniture.name, furniture_path(item.furniture) %></h2>
+          <p class="mt-1">Made by <%= item.furniture.manufacturer.name %></p>
+          <p class="mt-1">$<%= item.furniture.price %></p>
+          <%= link_to cart_item_path(item), method: :delete, data: { confirm: "Remove item from cart?" } do %>
+            <i class="fas fa-trash-alt mt-2 text-grey"></i>
+            <p class="d-inline text-grey">REMOVE</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- remove all items -->
+  <div>
+    <%= link_to carts_path, method: :delete, data: { confirm: "Remove all items from cart?" } do %>
+      <i class="fas fa-trash-alt mt-2 text-grey"></i>
+      <p class="d-inline text-grey">REMOVE ALL</p>
+    <% end %>
+  </div>
+
+  <div>
+    <h4>Total: $<%= @total %> </h4>
+  </div>
+
+  <div>
+    <%= form_with(url: orders_path, local:true) do %>
+      <%= hidden_field_tag :total, @total %>
+      <%= submit_tag("Checkout", class:"btn btn-pink-lg w-100") %>
+    <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,18 @@
+<div id="ar-overlay" data-controller="ar-overlay">
+	<div class="collapse" id="ar-collapse">
+			<div class="card card-body furniture-list">
+				<% @furnitures.each_with_index do |furniture, index| %>
+					<div class="furniture-list-item mt-2" data-furniture-id="#poly_furniture-<%= index %>" data-action="click->ar-overlay#getIndex">
+						<%= cl_image_tag(furniture.image.key, size: "80") %>
+						<%= furniture.name %>
+					</div>
+				<% end %>
+			</div>
+	</div>
+	<p>
+		<a id="ar-popup" data-toggle="collapse" href="#ar-collapse" role="button" aria-expanded="false" aria-controls="ar-collapse">
+			<%= image_tag("ar-furniture-button.png", size: "50x50") %>
+		</a>
+	</p>
+	<%= render 'shared/navbar' %>
+</div>

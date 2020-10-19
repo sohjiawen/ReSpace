@@ -1,0 +1,63 @@
+<a-scene
+      webxr="requiredFeatures: hit-test,local-floor; optionalFeatures: dom-overlay; overlayElement: #ar-overlay"
+	  ar-hit-test="reticle: #ar-reticle"
+	  embedded
+	  vr-mode-ui="enterVRButton: #enter-vr-btn"
+	  inspector="http://localhost:3000/dist/aframe-inspector.js">
+
+	<a-assets>
+		<% @furnitures.each_with_index do |furniture, index| %>
+			<% url = "https://poly.googleapis.com/v1/assets/#{furniture.poly_id}/?key=#{ENV['POLY_API_KEY']}" %>
+			<% file = JSON.parse(open(url).read) %>
+			<% hash = file['formats'].find do |format| %>
+				<% format['formatType'] == "GLTF2" || format['formatType'] == "GLTF" %>
+			<% end %>
+			<% gltf_url = hash["root"]["url"] %>
+			<% if gltf_url %>
+			<a-asset-item id="furniture-<%= index %>"
+						src="<%= gltf_url %>"
+						responseType="arraybuffer"></a-asset-item>
+			<% end %>
+		<% end %>
+
+		<a-asset-item id="reticle"
+					  src="https://cdn.glitch.com/40eaf7e6-8a3f-4f52-bd80-495ff8db0e78%2Freticle.glb?v=1588522174535"
+					  responseType="arraybuffer"></a-asset-item>
+	</a-assets>
+
+	<a-camera position="0 1.2 0"></a-camera>
+
+	<a id="enter-vr-btn" href="#" hidden></a>
+
+	<a-entity id="ar-reticle"
+			ar-hit-test
+			gltf-model="#reticle"
+			scale="0.8 0.8 0.8"
+			position="0 0 -2"></a-entity>
+
+	<% @furnitures.each_with_index do |furniture, index| %>
+		<a-entity id="poly_furniture-<%= index %>"
+			scale="0.15 0.15 0.15"
+			visible="false"
+			gltf-model="#furniture-<%= index %>"></a-entity>
+	<% end %>
+</a-scene>
+
+<div id="ar-overlay" data-controller="ar-overlay">
+	<div class="collapse" id="ar-collapse">
+			<div class="card card-body furniture-list">
+				<% @furnitures.each_with_index do |furniture, index| %>
+					<div class="furniture-list-item mt-2" data-furniture-id="#poly_furniture-<%= index %>" data-action="click->ar-overlay#getIndex">
+						<%= cl_image_tag(furniture.image.key, size: "80") %>
+						<%= furniture.name %>
+					</div>
+				<% end %>
+			</div>
+	</div>
+	<p>
+		<a class="btn btn-primary" id="ar-popup" data-toggle="collapse" href="#ar-collapse" role="button" aria-expanded="false" aria-controls="ar-collapse">
+			Furniture
+		</a>
+	</p>
+	<button id="exit-ar">Exit AR</button>
+</div>
